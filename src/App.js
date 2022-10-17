@@ -5,6 +5,7 @@ import './App.css';
 
 import Login from "./page/Login/Login" ;
 import Dashboard from "./page/Dashboard/Dashboard" ;
+import DataSiswa from "./page/DataSiswa/DataSiswa";
 
 export default function App() {
  
@@ -13,8 +14,9 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Dashboard />}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/dashboard" component={Dashboard}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/datasiswa" element={<DataSiswa/>}/>
           </Routes>
         </BrowserRouter>
       );

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 // import Sidebar from '../../Component/Sidebar'
 // import SubSidebar from '../../Component/SubSidebar'
-import { AiOutlineArrowLeft, AiOutlineDatabase } from "react-icons/ai";
-import { IoSchoolOutline } from "react-icons/io5";
+import { AiOutlineArrowLeft,AiOutlineUser, AiOutlineDatabase } from "react-icons/ai";
+import { MdOutlineSchool } from "react-icons/md";
 import { GrArticle } from "react-icons/gr";
+import { Link } from "react-router-dom";
+// import DataSiswa from "../DataSiswa/DataSiswa";
 
 export default function Dashboard() {
   const [open, setOpen] = useState(true);
@@ -37,24 +39,41 @@ ${open && "rotate-[360deg]"}`}
           </h1>
         </div>
         <ul className="pt-2">
-          <li className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-ligth-white rounded-md mt-2">
-            <span>
-              <IoSchoolOutline className="text-white" />
+        <Link to="./datasiswa">
+          <li className="text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-white hover:text-black rounded-md mt-2">
+          
+           <span className="hover:text-black">
+              <MdOutlineSchool className="hover:bg-white" />
             </span>
-            <span className={`text-base font-medium flex-1 ${!open && "hidden"}` }>Data Siswa</span>
+            <span
+              className={`text-base font-medium flex-1  ${!open && "hidden"}`}
+            >
+              <p className="hover:text-black"> Data Siswa</p>
+            </span>
+           
+            
           </li>
-          <li className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-ligth-white rounded-md mt-2">
+          </Link>
+          <li className="text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-white hover:text-black rounded-md mt-2">
             <span>
               <GrArticle className="bg-white" />
             </span>
-            <span className={`text-base font-medium flex-1 ${!open && "hidden"}` }>Data Artikel</span>
+            <span
+              className={`text-base font-medium flex-1 ${!open && "hidden"}`}
+            >
+              <p className="hover:text-black">Data Artikel</p>
+            </span>
           </li>
-          <li className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-ligth-white rounded-md mt-2">
+          <li className="text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-white hover:text-black rounded-md mt-2">
             <span>
-              <IoSchoolOutline className="text-white" />
+              <AiOutlineUser className="hover:bg-white" />
             </span>
 
-            <span className={`text-base font-medium flex-1 ${!open && "hidden"}` }>Data User</span>
+            <span
+              className={`text-base font-medium flex-1 ${!open && "hidden"}`}
+            >
+              <p className="hover:text-black">Data User</p>
+            </span>
           </li>
         </ul>
       </div>
