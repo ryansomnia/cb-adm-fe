@@ -6,6 +6,7 @@ import './App.css';
 import Login from "./page/Login/Login" ;
 import Dashboard from "./page/Dashboard/Dashboard" ;
 import DataSiswa from "./page/DataSiswa/DataSiswa";
+import DataArtikel from "./page/DataArtikel";
 
 export default function App() {
  
@@ -17,6 +18,7 @@ export default function App() {
             <Route path="/login" element={<Login/>}/>
             <Route path="/dashboard" element={<Dashboard/>}/>
             <Route path="/datasiswa" element={<DataSiswa/>}/>
+            <Route path="/dataartikel" element={<DataArtikel/>}/>
           </Routes>
         </BrowserRouter>
       );

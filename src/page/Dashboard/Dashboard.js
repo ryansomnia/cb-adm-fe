@@ -39,7 +39,7 @@ ${open && "rotate-[360deg]"}`}
           </h1>
         </div>
         <ul className="pt-2">
-        <Link to="./datasiswa">
+        <Link to="/datasiswa">
           <li className="text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-white hover:text-black rounded-md mt-2">
           
            <span className="hover:text-black">
@@ -53,7 +53,8 @@ ${open && "rotate-[360deg]"}`}
            
             
           </li>
-          </Link>
+          </Link >
+          <Link to="/dataartikel">
           <li className="text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-white hover:text-black rounded-md mt-2">
             <span>
               <GrArticle className="bg-white" />
@@ -64,6 +65,8 @@ ${open && "rotate-[360deg]"}`}
               <p className="hover:text-black">Data Artikel</p>
             </span>
           </li>
+          </Link>
+          <Link to="/datauser">
           <li className="text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-white hover:text-black rounded-md mt-2">
             <span>
               <AiOutlineUser className="hover:bg-white" />
@@ -75,6 +78,7 @@ ${open && "rotate-[360deg]"}`}
               <p className="hover:text-black">Data User</p>
             </span>
           </li>
+          </Link>
         </ul>
       </div>
 
