@@ -22,6 +22,26 @@ export default function Table() {
     }
   };
 
+  const deleteData = async (e) => {
+    try {
+      let res = await axios.post(api);
+      setData(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log("err", err.response.status);
+    }
+  };
+
+  const updateData = async (e) => {
+    try {
+      let res = await axios.post(api);
+      setData(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log("err", err.response.status);
+    }
+  };
+
   return (
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg mt-10">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
