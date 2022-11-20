@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 export default function Table() {
-  const api = "http://localhost:3014/register/getAll";
+  const api = "http://8.215.37.21:3014/register/getAll";
 
   const [data, setData] = useState([]);
 
