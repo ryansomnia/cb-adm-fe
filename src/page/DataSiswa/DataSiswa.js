@@ -3,7 +3,7 @@ import { AiOutlineArrowLeft, AiOutlineDatabase } from "react-icons/ai";
 import { MdOutlineSchool } from "react-icons/md";
 import { GrArticle } from "react-icons/gr";
 import { Link } from "react-router-dom";
-import Table from "../../Component/TableSiswa";
+import TableSiswa from "../../Component/TableSiswa";
 
 
 
@@ -83,7 +83,7 @@ export default function DataSiswa() {
 
       <div className="p-7">
         <h1 className="text-2xl font-semibold">Data Registrasi Siswa</h1>
-        <Table />
+        <TableSiswa />
       </div>
     </div>
   );
