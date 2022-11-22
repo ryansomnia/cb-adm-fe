@@ -82,8 +82,9 @@ export default function DataArtikel() {
 
       <div className="p-7">
         <h1 className="text-2xl font-semibold">Data Artikel</h1>
-        <TableArticle/>
         <ModalUpdateArtikel/>
+        <TableArticle/>
+        
       </div>
     </div>
   
