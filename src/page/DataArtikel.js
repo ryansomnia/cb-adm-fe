@@ -4,6 +4,7 @@ import { MdOutlineSchool } from "react-icons/md";
 import { GrArticle } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import TableArticle from '../Component/TableArticle';
+import ModalUpdateArtikel from '../Component/ModalUpdateArtikel';
 
 export default function DataArtikel() {
     const [open, setOpen] = useState(true);
@@ -82,6 +83,7 @@ export default function DataArtikel() {
       <div className="p-7">
         <h1 className="text-2xl font-semibold">Data Artikel</h1>
         <TableArticle/>
+        <ModalUpdateArtikel/>
       </div>
     </div>
   
