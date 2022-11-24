@@ -1,7 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import Swal from 'sweetalert2'
+// import { useNavigate } from "react-router-dom";
 import { AiFillFileAdd } from "react-icons/ai";
 
-export default function ModalUpdateArtikel() {
+
+export default function ModalTambahArtikel() {
+  const api = `http://localhost:3014/artikel/addArtikel`;
+  const [judul, setJudul] =useState("");
+  const [isi, setIsi] =useState("");
+  const [img, setImg] =useState("");
+  const [kategori, setKategori] =useState("");
+
+
+
+  const onsubmit = async () => {
+    console.log('judul', judul);
+    console.log('isi', isi);
+    console.log('img', img);
+    console.log('kategori', kategori);
+
+
+    const data = new FormData();
+
+    data.append('judul', judul)
+    data.append('isi', isi)
+    data.append('img', img)
+    data.append('kategori', kategori)
+
+    axios.post(api, data, {
+      headers: {
+        'content-type' : 'multipart/form-data'
+      }
+
+    }).then(res =>{
+      console.log('post success : ', res);
+    })
+    .catch(err =>{
+      console.log('post gagal : ',err);
+    })
+  }
+  
+  
+  //  const upload = async(e) =>{
+  //   e.preventDefault();
+  //       try {
+  //       let res =  await axios.post(api, {
+  //           method: "POST",
+  //           body:JSON.stringify({judul, isi, img, kategori})
+  //         });
+  //         console.log(res);
+  //         Swal.fire({
+  //           position: 'top-end',
+  //           icon: 'success',
+  //           title: `Artikel berhasil ditambahkan. `,
+  //           showConfirmButton: false,
+  //           timer: 1500
+  //         })
+  //         // window.location.reload();
+  //       } catch (err) {
+  //         Swal.fire({
+  //           icon: 'error',
+  //           title: 'Oops...',
+  //           text: 'Anda gagal menambah Artikel'
+  //         })
+  //         console.log('err',err.response.status);
+  //       }
+  // }
+
   return (
     // Button trigger modal
     <div className="flex flex-row">
@@ -39,29 +105,22 @@ export default function ModalUpdateArtikel() {
               ></button>
             </div>
             <div className="modal-body relative p-4">
-            <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+            <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
   <form>
-    <div class="grid grid-cols-2 gap-4">
-      <div class="form-group mb-6">
-        <input type="text" class="form-control
-          block
-          w-full
-          px-3
-          py-1.5
-          text-base
-          font-normal
-          text-gray-700
-          bg-white bg-clip-padding
-          border border-solid border-gray-300
-          rounded
-          transition
-          ease-in-out
-          m-0
+    <div className="grid grid-cols-2 gap-4">
+      <div className="form-group mb-6">
+        <input type="text" 
+        value={judul}
+        onChange={(e)=> setJudul(e.target.value)}
+        className="form-control block  w-full  px-3  py-1.5  text-base  font-normal  text-gray-700  bg-white bg-clip-padding  border border-solid border-gray-300 rounded transition ease-in-out m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
           aria-describedby="emailHelp123" placeholder="Judul Artikel"/>
       </div>
-      <div class="form-group mb-6">
-      <select class="form-select appearance-none
+      <div className="form-group mb-6">
+      <select 
+         value={kategori}
+         onChange={(e)=> setKategori(e.target.value)}
+      className="form-select appearance-none
       block
       w-full
       px-3
@@ -82,9 +141,11 @@ export default function ModalUpdateArtikel() {
     </select>
       </div>
     </div>
-    <div class="form-group mb-6">
+    <div className="form-group mb-6">
     <textarea
-      class="
+       value={isi}
+       onChange={(e)=> setIsi(e.target.value)}
+      className="
         form-control
         block
         w-full
@@ -106,9 +167,12 @@ export default function ModalUpdateArtikel() {
       placeholder="Isi Artikel"
     ></textarea>
     </div>
-    <div class="form-group mb-6">
-    <label for="formFile" class="form-label inline-block mb-2 text-gray-700">Input Gambar</label>
-    <input class="form-control
+    <div className="form-group mb-6">
+    <label for="formFile" className="form-label inline-block mb-2 text-gray-700">Input Gambar</label>
+    <input 
+       value={img}
+       onChange={(e)=> setImg(e.target.value)}
+    className="form-control
     block
     w-full
     px-3
@@ -122,9 +186,9 @@ export default function ModalUpdateArtikel() {
     transition
     ease-in-out
     m-0
-    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="formFile"/>
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" accept="image/png, image/jpg, image/jpeg" id="formFile"/>
     </div>
-    <div class="form-group form-check text-center mb-6">
+    <div className="form-group form-check text-center mb-6">
      </div>
     <button
                 type="button"
@@ -149,7 +213,7 @@ export default function ModalUpdateArtikel() {
                 Close
               </button>
               <button
-                type="button"
+                type="submit"
                 className="px-6
       py-2.5
       bg-blue-600
@@ -167,7 +231,7 @@ export default function ModalUpdateArtikel() {
       duration-150
       ease-in-out
       ml-1"
-              >
+              onClick={onsubmit()}>
                 Save changes
               </button>
   </form>

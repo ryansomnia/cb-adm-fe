@@ -3,12 +3,12 @@ import axios from "axios";
 // import Swal from "sweetalert2";
 // import { useNavigate } from "react-router-dom";
 
-export default function Table() {
+export default function TableSiswa() {
   
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const api = `http://8.215.37.21:3014/register/getAll`;
+    const api = `http://localhost:3014/register/getAll`;
     
     const getData = async (e) => {
       try {

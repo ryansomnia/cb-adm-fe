@@ -8,7 +8,7 @@ export default function TableArticle() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        const api = `http://8.215.37.21:3014/artikel/getAll`;
+        const api = `http://localhost:3014/artikel/getAll`;
 
         const getData = async (e) => {
             try {
@@ -26,7 +26,7 @@ export default function TableArticle() {
      
   
     return (
-    <div className="overflow-x-auto relative shadow-md sm:rounded-lg mt-10">
+    <div className="overflow-x-auto relative shadow-md sm:rounded-lg mt-5">
     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -88,7 +88,8 @@ export default function TableArticle() {
                 </button>
                 <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                     Edit
-                </button>                </td>
+                </button>
+                </td>
             </tr>
             )}
         </tbody>
