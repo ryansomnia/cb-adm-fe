@@ -25,15 +25,17 @@ export default function TableSiswa() {
 
   
 
-  // const deleteData = async (e) => {
-  //   try {
-  //     let res = await axios.post(api);
-  //     setData(res.data);
-  //     console.log(res.data);
-  //   } catch (err) {
-  //     console.log("err", err.response.status);
-  //   }
-  // };
+  const deleteData = async (e) => {
+    try {
+      const api = `http://localhost:3014/register/getAll`;
+
+      let res = await axios.post(api);
+      setData(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log("err", err.response.status);
+    }
+  };
 
   // const updateData = async (e) => {
   //   try {

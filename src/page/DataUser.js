@@ -4,6 +4,7 @@ import { MdOutlineSchool } from "react-icons/md";
 import { GrArticle } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import TableUser from '../Component/TableUser';
+import ModalTambahUser from '../Component/ModalTambahUser';
 
 export default function DataUser() {
     const [open, setOpen] = useState(true);
@@ -80,7 +81,8 @@ export default function DataUser() {
         </div>
   
         <div className="p-7">
-          <h1 className="text-2xl font-semibold">Data Registrasi Siswa</h1>
+          <h1 className="text-2xl font-semibold">Data User</h1>
+          <ModalTambahUser/>
           <TableUser />
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Swal from 'sweetalert2'
-// import { useNavigate } from "react-router-dom";
+// import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
 import { AiFillFileAdd } from "react-icons/ai";
 
 
@@ -10,36 +10,61 @@ export default function ModalTambahArtikel() {
   const [judul, setJudul] =useState("");
   const [isi, setIsi] =useState("");
   const [img, setImg] =useState("");
+  const [previmg, setPrevImg] =useState("");
   const [kategori, setKategori] =useState("");
 
+  const navigate = useNavigate(); 
 
 
-  const onsubmit = async () => {
-    console.log('judul', judul);
-    console.log('isi', isi);
-    console.log('img', img);
-    console.log('kategori', kategori);
+
+const addArticle = async(e) =>{
+    e.preventDefault();
+        const formData = new FormData();
+    formData.append("judul", judul);
+    formData.append("isi", isi);
+    formData.append("img", img);
+    formData.append("kategori", kategori);
+
+    try {
+      await axios.post(api,formData,{
+        headers:{
+          "Content-type":"multipart/form-data"
+        }
+      })
+      navigate("/")
+    } catch (err) {
+      console.log(err );
+    }
 
 
-    const data = new FormData();
+}
 
-    data.append('judul', judul)
-    data.append('isi', isi)
-    data.append('img', img)
-    data.append('kategori', kategori)
+  // const onsubmit = async () => {
+  //   console.log('judul', judul);
+  //   console.log('isi', isi);
+  //   console.log('img', img);
+  //   console.log('kategori', kategori);
 
-    axios.post(api, data, {
-      headers: {
-        'content-type' : 'multipart/form-data'
-      }
 
-    }).then(res =>{
-      console.log('post success : ', res);
-    })
-    .catch(err =>{
-      console.log('post gagal : ',err);
-    })
-  }
+  //   const data = new FormData();
+
+  //   data.append('judul', judul)
+  //   data.append('isi', isi)
+  //   data.append('img', img)
+  //   data.append('kategori', kategori)
+
+  //   axios.post(api, data, {
+  //     headers: {
+  //       'content-type' : 'multipart/form-data'
+  //     }
+
+  //   }).then(res =>{
+  //     console.log('post success : ', res);
+  //   })
+  //   .catch(err =>{
+  //     console.log('post gagal : ',err);
+  //   })
+  // }
   
   
   //  const upload = async(e) =>{
@@ -106,7 +131,7 @@ export default function ModalTambahArtikel() {
             </div>
             <div className="modal-body relative p-4">
             <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
-  <form>
+  <form onSubmit={addArticle}>
     <div className="grid grid-cols-2 gap-4">
       <div className="form-group mb-6">
         <input type="text" 
@@ -231,9 +256,10 @@ export default function ModalTambahArtikel() {
       duration-150
       ease-in-out
       ml-1"
-              onClick={onsubmit()}>
+             >
                 Save changes
               </button>
+             
   </form>
 </div>
             </div>
