@@ -43,6 +43,9 @@ export default function TableArticle() {
                     Image
                 </th>
                 <th scope="col" className="py-3 px-6">
+                    URL
+                </th>
+                <th scope="col" className="py-3 px-6">
                     Kategori
                 </th>
                 <th scope="col" className="py-3 px-6">
@@ -72,6 +75,9 @@ export default function TableArticle() {
                 </td>
                 <td className="py-4 px-6">
                     {x.img}
+                </td>
+                <td className="py-4 px-6" >
+                    <img src={x.url} alt='img'></img>
                 </td>
                 <td className="py-4 px-6">
                     {x.kategori}

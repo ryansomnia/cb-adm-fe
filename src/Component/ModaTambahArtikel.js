@@ -9,8 +9,8 @@ export default function ModalTambahArtikel() {
   const api = `http://localhost:3014/artikel/addArtikel`;
   const [judul, setJudul] =useState("");
   const [isi, setIsi] =useState("");
-  const [img, setImg] =useState("");
-  const [previmg, setPrevImg] =useState("");
+  const [file, setFile] =useState("");
+  // const [previmg, setPrevImg] =useState("");
   const [kategori, setKategori] =useState("");
 
   const navigate = useNavigate(); 
@@ -19,19 +19,24 @@ export default function ModalTambahArtikel() {
 
 const addArticle = async(e) =>{
     e.preventDefault();
-        const formData = new FormData();
+    console.log(file);
+        let formData = new FormData();
     formData.append("judul", judul);
     formData.append("isi", isi);
-    formData.append("img", img);
+    formData.append("file", file);
     formData.append("kategori", kategori);
 
     try {
+      // loading start
       await axios.post(api,formData,{
         headers:{
-          "Content-type":"multipart/form-data"
+          'Content-Type': 'multipart/form-data'
         }
       })
-      navigate("/")
+// loading end
+      navigate("/dataartikel")
+      window.location.reload();
+
     } catch (err) {
       console.log(err );
     }
@@ -131,7 +136,7 @@ const addArticle = async(e) =>{
             </div>
             <div className="modal-body relative p-4">
             <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
-  <form onSubmit={addArticle}>
+  <form>
     <div className="grid grid-cols-2 gap-4">
       <div className="form-group mb-6">
         <input type="text" 
@@ -195,8 +200,8 @@ const addArticle = async(e) =>{
     <div className="form-group mb-6">
     <label for="formFile" className="form-label inline-block mb-2 text-gray-700">Input Gambar</label>
     <input 
-       value={img}
-       onChange={(e)=> setImg(e.target.value)}
+      //  value={file.name ? file.name : ''}
+       onChange={(e)=> setFile(e.target.files[0])}
     className="form-control
     block
     w-full
@@ -211,7 +216,9 @@ const addArticle = async(e) =>{
     transition
     ease-in-out
     m-0
-    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" accept="image/png, image/jpg, image/jpeg" id="formFile"/>
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
+    type="file" 
+    accept="image/png, image/jpg, image/jpeg" id="formFile"/>
     </div>
     <div className="form-group form-check text-center mb-6">
      </div>
@@ -237,7 +244,8 @@ const addArticle = async(e) =>{
               >
                 Close
               </button>
-              <button
+              <button 
+              onClick={addArticle}
                 type="submit"
                 className="px-6
       py-2.5
