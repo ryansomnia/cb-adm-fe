@@ -1,25 +1,37 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function TableUser() {
   
   const [data, setData] = useState([]);
+  const navigate = useNavigate(); 
+  const api = `http://localhost:3014/`;
 
+ 
   useEffect(() => {
-    const api = `http://localhost:3014/user/getAll`;
-    
     const getData = async (e) => {
       try {
-        let res = await axios.get(api);
+        let res = await axios.get(api+'user/getAll');
         setData(res.data.data);
-        console.log(data);
       } catch (err) {
         console.log("err", err.response.status);
       }
     };
-
+    
     getData();
   }, []);
+
+ 
+  const deleteUser = async(id) =>{
+        try {
+         await axios.post(api+'user/deleteUser' , {id});
+         navigate("/datauser")
+         window.location.reload();
+        } catch (err) {
+          console.log('err',err);
+        }
+  }
 
   return (
     <>
@@ -51,20 +63,22 @@ export default function TableUser() {
         </tr>
       </thead>
       <tbody>
-      {data.map((x, i) => 
-            
-            <tr key={i} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+      {data.map((user) => 
+           
+            <tr key={user.iduser} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
               <th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {x.iduser}
+              {user.iduser}
               </th>
-              <td className="py-4 px-6">{x.username}</td>
-              <td className="py-4 px-6">{x.password}</td>
-              <td className="py-4 px-6">{x.nama}</td>
-              <td className="py-4 px-6">{x.status}</td>
-              <td className="py-4 px-6">{x.role}</td>
+              <td className="py-4 px-6">{user.username}</td>
+              <td className="py-4 px-6">{user.password}</td>
+              <td className="py-4 px-6">{user.nama}</td>
+              <td className="py-4 px-6">{user.status}</td>
+              <td className="py-4 px-6">{user.role}</td>
 
               <td className="py-4 px-6 text-right">
-              <button className="font-medium pr-5 text-red-600 dark:text-red-500 hover:underline">
+              <button 
+              className="font-medium pr-5 text-red-600 dark:text-red-500 hover:underline"
+              onClick={()=> deleteUser(user.iduser)}>
                   Delete
                 </button>
                 <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">

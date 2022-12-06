@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, {useState} from 'react'
 import { AiOutlineArrowLeft, AiOutlineDatabase } from "react-icons/ai";
 import { MdOutlineSchool } from "react-icons/md";
 import { GrArticle } from "react-icons/gr";

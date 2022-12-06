@@ -10,7 +10,6 @@ export default function ModalTambahArtikel() {
   const [judul, setJudul] =useState("");
   const [isi, setIsi] =useState("");
   const [file, setFile] =useState("");
-  // const [previmg, setPrevImg] =useState("");
   const [kategori, setKategori] =useState("");
 
   const navigate = useNavigate(); 
@@ -44,60 +43,7 @@ const addArticle = async(e) =>{
 
 }
 
-  // const onsubmit = async () => {
-  //   console.log('judul', judul);
-  //   console.log('isi', isi);
-  //   console.log('img', img);
-  //   console.log('kategori', kategori);
-
-
-  //   const data = new FormData();
-
-  //   data.append('judul', judul)
-  //   data.append('isi', isi)
-  //   data.append('img', img)
-  //   data.append('kategori', kategori)
-
-  //   axios.post(api, data, {
-  //     headers: {
-  //       'content-type' : 'multipart/form-data'
-  //     }
-
-  //   }).then(res =>{
-  //     console.log('post success : ', res);
-  //   })
-  //   .catch(err =>{
-  //     console.log('post gagal : ',err);
-  //   })
-  // }
   
-  
-  //  const upload = async(e) =>{
-  //   e.preventDefault();
-  //       try {
-  //       let res =  await axios.post(api, {
-  //           method: "POST",
-  //           body:JSON.stringify({judul, isi, img, kategori})
-  //         });
-  //         console.log(res);
-  //         Swal.fire({
-  //           position: 'top-end',
-  //           icon: 'success',
-  //           title: `Artikel berhasil ditambahkan. `,
-  //           showConfirmButton: false,
-  //           timer: 1500
-  //         })
-  //         // window.location.reload();
-  //       } catch (err) {
-  //         Swal.fire({
-  //           icon: 'error',
-  //           title: 'Oops...',
-  //           text: 'Anda gagal menambah Artikel'
-  //         })
-  //         console.log('err',err.response.status);
-  //       }
-  // }
-
   return (
     // Button trigger modal
     <div className="flex flex-row">
@@ -168,6 +114,7 @@ const addArticle = async(e) =>{
         <option selected>Pilih Kategori</option>
         <option value="news">News</option>
         <option value="artikel">Artikel</option>
+        <option value="carousel">Carousel</option>
     </select>
       </div>
     </div>

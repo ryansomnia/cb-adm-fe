@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import Swal from "sweetalert2";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function TableArticle() {
 
     const [data, setData] = useState([]);
+    const navigate = useNavigate(); 
+    const api = `http://localhost:3014/`;
+
 
     useEffect(() => {
-        const api = `http://localhost:3014/artikel/getAll`;
-
         const getData = async (e) => {
             try {
-              let res = await axios.get(api);
+              let res = await axios.get(api+'artikel/getAll');
               setData(res.data);
               console.log(res.data);
             } catch (err) {
@@ -23,7 +24,16 @@ export default function TableArticle() {
         getData();
       }, []);
     
-     
+      const deleteArtikel = async(id) =>{
+        try {
+         await axios.post(api+'artikel/deleteArtikel' , {id});
+
+         navigate("/dataartikel")
+         window.location.reload();
+        } catch (err) {
+          console.log('err',err);
+        }
+  }
   
     return (
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg mt-5">
@@ -60,36 +70,38 @@ export default function TableArticle() {
             </tr>
         </thead>
         <tbody>
-            {data.map((x, i) =>
+            {data.map((artikel) =>
 
            
-            <tr key={i}className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <tr key={artikel.idartikel}className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {x.idartikel}
+                    {artikel.idartikel}
                 </th>
                 <td className="py-4 px-6">
-                {x.judul}
+                {artikel.judul}
                 </td>
                 <td className="py-4 px-6">
-                    {x.isi}
+                    {artikel.isi}
                 </td>
                 <td className="py-4 px-6">
-                    {x.img}
+                    {artikel.img}
                 </td>
                 <td className="py-4 px-6" >
-                    <img src={x.url} alt='img'></img>
+                    <img src={artikel.url} alt='img'></img>
                 </td>
                 <td className="py-4 px-6">
-                    {x.kategori}
+                    {artikel.kategori}
                 </td>
                 <td className="py-4 px-6">
-                    {x.tglCreate}
+                    {artikel.tglCreate}
                 </td>
                 <td className="py-4 px-6">
-                    {x.status}
+                    {artikel.status}
                 </td>
                 <td className="py-4 px-6 text-right">
-                <button className="font-medium pr-5 text-red-600 dark:text-red-500 hover:underline">
+                <button className="font-medium pr-5 text-red-600 dark:text-red-500 hover:underline"
+                onClick={()=>deleteArtikel(artikel.idartikel)}
+                >
                   Delete
                 </button>
                 <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
