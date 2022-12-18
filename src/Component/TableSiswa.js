@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import Swal from "sweetalert2";
+import { AiFillDelete, AiOutlineSearch } from "react-icons/ai";
+
 import { useNavigate } from "react-router-dom";
 
 export default function TableSiswa() {
@@ -49,6 +51,35 @@ export default function TableSiswa() {
 
   return (
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg mt-10">
+      <div class="flex justify-start">
+  <div class="flex flex-row mb-3 xl:w-96">
+  
+    <input
+      type="text"
+      class="
+        form-control
+        block
+        
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+      "
+      id="exampleFormControlInput1"
+      placeholder="Cari Nama"
+    />
+    <button>
+    <AiOutlineSearch size={30} className='px-2 bg-blue-600' color='white'/>
+    </button>
+    
+  </div>
+</div>
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>

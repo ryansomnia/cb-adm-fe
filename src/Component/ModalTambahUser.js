@@ -15,6 +15,8 @@ export default function ModalTambahUser() {
 
   const navigate = useNavigate(); 
 
+  
+
   const saveUser = async(e) =>{
     e.preventDefault();
         try {
@@ -50,16 +52,15 @@ export default function ModalTambahUser() {
         rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg 
         focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal">
+        data-bs-target="#addUser">
        <AiFillFileAdd size={30} className="mb-5"/> Tambah User
       </button>
 
-      {/* <!-- Modal --> */}
       <div
         className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-        id="exampleModal"
+        id="addUser"
         tabindex="-1"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledby="addUserLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog relative w-auto pointer-events-none">
@@ -67,7 +68,7 @@ export default function ModalTambahUser() {
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <h5
                 className="text-xl font-medium leading-normal text-gray-800"
-                id="exampleModalLabel"
+                id="addUserLabel"
               >
                 Tambah Data
               </h5>
@@ -87,7 +88,7 @@ export default function ModalTambahUser() {
         value={username}
         onChange={(e)=> setUsername(e.target.value)}
         className="form-control block  w-full  px-3  py-1.5  text-base  font-normal  text-gray-700  bg-white bg-clip-padding  border border-solid border-gray-300 rounded transition ease-in-out m-0
-          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           aria-describedby="emailHelp123" placeholder="Username"/>
           
         
@@ -97,7 +98,7 @@ export default function ModalTambahUser() {
         value={password}
         onChange={(e)=> setPassword(e.target.value)}
         className="form-control block  w-full  px-3  py-1.5  text-base  font-normal  text-gray-700  bg-white bg-clip-padding  border border-solid border-gray-300 rounded transition ease-in-out m-0
-          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           aria-describedby="emailHelp123" placeholder="Password"/>
           
       </div>
@@ -109,13 +110,13 @@ export default function ModalTambahUser() {
         value={nama}
         onChange={(e)=> setNama(e.target.value)}
         className="form-control block  w-full  px-3  py-1.5  text-base  font-normal  text-gray-700  bg-white bg-clip-padding  border border-solid border-gray-300 rounded transition ease-in-out m-0
-          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           aria-describedby="emailHelp123" placeholder="Nama Lengkap"/>
           
       </div>
       <div className="form-group mb-6">
 <select className="form-control block  w-full  px-3  py-1.5  text-base  font-normal  text-gray-700  bg-white bg-clip-padding  border border-solid border-gray-300 rounded transition ease-in-out m-0
-          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           aria-describedby="emailHelp123" placeholder="Role"
               onChange={(e)=> setRole(e.target.value)}
               value={role}
@@ -156,23 +157,10 @@ export default function ModalTambahUser() {
               </button>
               <button
                 type="submit"
-                className="px-6
-      py-2.5
-      bg-blue-600
-      text-white
-      font-medium
-      text-xs
-      leading-tight
-      uppercase
-      rounded
-      shadow-md
-      hover:bg-blue-700 hover:shadow-lg
-      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-blue-800 active:shadow-lg
-      transition
-      duration-150
-      ease-in-out
-      ml-1"
+                className="px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight
+                 uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700
+                  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg 
+                  transition duration-150 ease-in-out ml-1"
       
               >
                 Save changes
