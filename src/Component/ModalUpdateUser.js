@@ -9,7 +9,7 @@ import { AiFillEdit } from "react-icons/ai";
 export default function ModalUpdateUser(id) {
   let iduser = id.id
   console.log('cccc=>',iduser);
-    const api = `http://localhost:3014/user/getOneData`;
+    const api = `http://8.215.37.21:3014/user/getOneData`;
 
   const [username, setUsername] =useState("");
   const [password, setPassword] =useState("");
