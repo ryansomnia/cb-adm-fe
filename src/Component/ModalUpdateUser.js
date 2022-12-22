@@ -7,39 +7,6 @@ import { AiFillEdit } from "react-icons/ai";
 
 
 export default function ModalUpdateUser({data}) {
-    const api = `http://8.215.37.21:3014/user/getOneData`;
-
-    console.log(data);
-  // const navigate = useNavigate(); 
-
-   // const updateUser = async(e) =>{
-  //   e.preventDefault();
-  //       try {
-  //        let res =  await axios.post(api+'/updateUser', {
-  //           username,
-  //           password,
-  //           nama,
-  //           role
-  //         });
-  //         console.log(res);
-  //         Swal.fire({
-  //           position: 'top-end',
-  //           icon: 'success',
-  //           title: `Sukses mengedit data.`,
-  //           showConfirmButton: false,
-  //           timer: 1500
-  //         })
-  //         navigate("/datauser")
-  //         window.location.reload();
-  //       } catch (err) {
-  //         Swal.fire({
-  //           icon: 'error',
-  //           title: 'Oops...',
-  //           text: 'Anda gagal menambahkan data.'
-  //         })
-  //         console.log('err',err.response.status);
-  //       }
-  // }
   return (
     <div className="flex flex-row">
     
@@ -113,8 +80,8 @@ export default function ModalUpdateUser({data}) {
             value={data.role}
         >
           <option selected>Role</option>
-          <option value="manager">Manager</option>
-          <option value="admin">Admin</option>
+          <option value="Manager">Manager</option>
+          <option value="Admin">Admin</option>
         </select>
         
       

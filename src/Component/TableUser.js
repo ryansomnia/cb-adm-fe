@@ -36,23 +36,11 @@ export default function TableUser() {
     }
   }
 
-  //   const updateUser = async(id) =>{
-  //     try {
-  //      await axios.post(api+'user/updateUser' , {id});
-  //      navigate("/datauser")
-  //      window.location.reload();
-  //     } catch (err) {
-  //       console.log('err',err);
-  //     }
-  // }
 
   const getOneDataUser = async (id) => {
-    console.log(id, 'id');
-    // e.preventDefault();
     try {
       let res = await axios.post(api + 'user/getOneData',{iduser:id});
       setDataOne(res.data.data[0])
-      console.log('fff',res);
     } catch (err) {
       console.log("err", err.response.status);
     }
