@@ -6,37 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { AiFillEdit } from "react-icons/ai";
 
 
-export default function ModalUpdateUser(id) {
-  let iduser = id.id
-  console.log('cccc=>',iduser);
+export default function ModalUpdateUser({data}) {
     const api = `http://8.215.37.21:3014/user/getOneData`;
 
-  const [username, setUsername] =useState("");
-  const [password, setPassword] =useState("");
-  const [nama, setNama] =useState("");
-  const [role, setRole] =useState("");
-
+    console.log(data);
   // const navigate = useNavigate(); 
-
-
-  const getOneDataUser = async (ID) => {
-    // e.preventDefault();
-    try {
-      let res = await axios.get(api,{iduser:ID});
-      console.log('fff',res);
-      setUsername(res.data.username)
-      setPassword(res.data.password)
-      setNama(res.data.nama)
-      setRole(res.data.role)
-
-    } catch (err) {
-      console.log("err", err.response.status);
-    }
-  };
-  
-  useEffect(()=>{
-    getOneDataUser();
-  },[])
 
    // const updateUser = async(e) =>{
   //   e.preventDefault();
@@ -68,17 +42,7 @@ export default function ModalUpdateUser(id) {
   // }
   return (
     <div className="flex flex-row">
-    <button
-      type="button" className="flex py-1 px-2 text-center self-center no-underline bg-blue-600 text-white font-light text-xs leading-tight uppercase 
-      rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg 
-      focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-      data-bs-toggle="modal"
-      data-bs-target="#updateUser"
-      onClick={()=> getOneDataUser(iduser)}
-      >
-     <AiFillEdit size={30}
-      /> Update
-    </button>
+    
 
     {/* <!-- Modal --> */}
     <div
@@ -112,7 +76,7 @@ export default function ModalUpdateUser(id) {
   <div className="grid grid-cols-2 gap-4">
     <div className="form-group mb-6">
       <input type="text" 
-      // value={username}
+      value={data.username}
       // onChange={(e)=> setUsername(e.target.value)}
       className="form-control block  w-full  px-3  py-1.5  text-base  font-normal  text-gray-700  bg-white bg-clip-padding  border border-solid border-gray-300 rounded transition ease-in-out m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
@@ -134,7 +98,7 @@ export default function ModalUpdateUser(id) {
 
   <div className="form-group mb-6">
     <input type="text" 
-    //   value={nama}
+      value={data.nama}
     //   onChange={(e)=> setNama(e.target.value)}
       className="form-control block  w-full  px-3  py-1.5  text-base  font-normal  text-gray-700  bg-white bg-clip-padding  border border-solid border-gray-300 rounded transition ease-in-out m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
@@ -146,11 +110,11 @@ export default function ModalUpdateUser(id) {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
         aria-describedby="emailHelp123" placeholder="Role"
             // onChange={(e)=> setRole(e.target.value)}
-            // value={role}
+            value={data.role}
         >
           <option selected>Role</option>
-          <option value="Manager">Manager</option>
-          <option value="Admin">Admin</option>
+          <option value="manager">Manager</option>
+          <option value="admin">Admin</option>
         </select>
         
       
