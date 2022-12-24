@@ -9,7 +9,7 @@ export default function TableSiswa() {
   
   const [data, setData] = useState([]);
   const navigate = useNavigate(); 
-  const api = `http://8.215.37.21:3014/`;
+  const api = `http://89.116.228.164:3014/`;
 
   useEffect(() => {
     

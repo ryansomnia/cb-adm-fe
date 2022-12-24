@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 
 export default function ModalUpdateUser({ data }) {
-  const api = `http://8.215.37.21:3014`;
+  const api = `http://89.116.228.164:3014`;
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +18,7 @@ export default function ModalUpdateUser({ data }) {
    const updateUser = async(e) =>{
     e.preventDefault();
         try {
-         let res =  await axios.post(api+'/updateUser', {
+         let res =  await axios.post(api+'/user/updateUser', {
             id: data.iduser,
             username,
             password,

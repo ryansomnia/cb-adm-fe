@@ -6,7 +6,7 @@ import { AiFillFileAdd } from "react-icons/ai";
 
 
 export default function ModalUpdateArtikel() {
-  const api = `http://8.215.37.21:3014/artikel/addArtikel`;
+  const api = `http://89.116.228.164:3014/artikel/addArtikel`;
   const [judul, setJudul] = useState("");
   const [isi, setIsi] = useState("");
   const [file, setFile] = useState("");

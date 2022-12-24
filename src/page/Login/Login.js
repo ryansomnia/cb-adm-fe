@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   
-  const api = `http://8.215.37.21:3014/user/login`;
+  const api = `http://89.116.228.164:3014/user/login`;
 
   const [username, setUsername] =useState("");
   const [password, setPassword] =useState("");
