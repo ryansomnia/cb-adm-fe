@@ -90,6 +90,9 @@ export default function TableSiswa() {
             Nama Lengkap
             </th>
             <th scope="col" className="py-3 px-6">
+            Jenis Regis
+            </th>
+            <th scope="col" className="py-3 px-6">
               Tanggal Lahir
             </th>
             <th scope="col" className="py-3 px-6">
@@ -114,6 +117,7 @@ export default function TableSiswa() {
               {register.idregister}
               </th>
               <td className="py-4 px-6">{register.namaLengkap}</td>
+              <td className="py-4 px-6">{register.jenisRegis}</td>
               <td className="py-4 px-6">{register.tanggalLahir}</td>
               <td className="py-4 px-6">{register.tempatLahir}</td>
               <td className="py-4 px-6">{register.jenisKelamin}</td>

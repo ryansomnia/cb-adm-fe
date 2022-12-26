@@ -39,6 +39,12 @@ export default function Login() {
 
   return (
     <div className="flex justify-center">
+      {/* <div className="bg-green-400 w-1/2">
+        <h1>hh</h1>
+        </div>
+        <div className="bg-red-400 w-1/2">
+        <img src="/img/TK.JPG" alt='img'></img>
+        </div> */}
       <div className="bg-white h-36 w-max">
         <p className="font-sans text-3xl">Login</p>
         <form onSubmit={saveUser}>
