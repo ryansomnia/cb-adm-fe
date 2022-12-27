@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 import { AiFillFileAdd } from "react-icons/ai";
 
 
-export default function ModalUpdateArtikel() {
-  const api = `http://89.116.228.164:3014/artikel/addArtikel`;
+export default function ModalUpdateArtikel({data}) {
+  const api = `http://89.116.228.164:3014/artikel/getOneArtikel`;
   const [judul, setJudul] = useState("");
   const [isi, setIsi] = useState("");
   const [file, setFile] = useState("");
@@ -39,9 +39,15 @@ export default function ModalUpdateArtikel() {
     } catch (err) {
       console.log(err);
     }
-
-
   }
+
+  useEffect(() => {
+    console.log(data, 'datas');
+    setJudul(data?.judul)
+    setIsi(data?.isi)
+    setFile(data?.file)
+    setKategori(data?.kategori)
+  }, [data])
 
 
   return (
@@ -50,9 +56,9 @@ export default function ModalUpdateArtikel() {
       {/* <!-- Modal --> */}
       <div
         className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-        id="modalartikel"
+        id="modalartikelUpdate"
         tabindex="-1"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledby="modalartikel"
         aria-hidden="true"
       >
         <div className="modal-dialog relative w-auto pointer-events-none">
@@ -60,9 +66,9 @@ export default function ModalUpdateArtikel() {
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <h5
                 className="text-xl font-medium leading-normal text-gray-800"
-                id="exampleModalLabel"
+                id="modalartikel"
               >
-                Tambah Data
+                <b>Tambah Data</b>
               </h5>
               <button
                 type="button"
@@ -81,7 +87,7 @@ export default function ModalUpdateArtikel() {
                         onChange={(e) => setJudul(e.target.value)}
                         className="form-control block  w-full  px-3  py-1.5  text-base  font-normal  text-gray-700  bg-white bg-clip-padding  border border-solid border-gray-300 rounded transition ease-in-out m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        aria-describedby="emailHelp123" placeholder="Judul Artikel" />
+                        aria-describedby="emailHelp123" placeholder="Judul Artikels" />
                     </div>
                     <div className="form-group mb-6">
                       <select
@@ -102,7 +108,7 @@ export default function ModalUpdateArtikel() {
       ease-in-out
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                        <option selected>Pilih Kategori</option>
+                        <option defaultValue='news'>Pilih Kategori</option>
                         <option value="news">News</option>
                         <option value="artikel">Artikel</option>
                         <option value="carousel">Carousel</option>

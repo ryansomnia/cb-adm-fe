@@ -18,23 +18,33 @@ export default function ModalUpdateUser({ data }) {
    const updateUser = async(e) =>{
     e.preventDefault();
         try {
-         let res =  await axios.post(api+'/user/updateUser', {
-            id: data.iduser,
-            username,
-            password,
-            nama,
-            role
-          });
-          console.log(res);
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: `Sukses mengedit data.`,
-            showConfirmButton: false,
-            timer: 1500
-          })
-          navigate("/datauser")
-          window.location.reload();
+          if (!username || !password || !nama || !role) {
+            Swal.fire({
+              position: 'top-end-center',
+              icon: 'error',
+              title: `Data belum lenglap terisi`,
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }else{
+            let res =  await axios.post(api+'/user/updateUser', {
+              id: data.iduser,
+              username,
+              password,
+              nama,
+              role
+            });
+            console.log(res);
+            Swal.fire({
+              position: 'top-end-center',
+              icon: 'success',
+              title: `Sukses mengedit data.`,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            navigate("/datauser")
+            window.location.reload();
+          }
         } catch (err) {
           Swal.fire({
             icon: 'error',
@@ -123,7 +133,7 @@ export default function ModalUpdateUser({ data }) {
                         onChange={(e)=> setRole(e.target.value)}
                         value={role}
                       >
-                        <option selected>Role</option>
+                        <option defaultValue='Admin'>Role</option>
                         <option value="Manager">Manager</option>
                         <option value="Admin">Admin</option>
                       </select>

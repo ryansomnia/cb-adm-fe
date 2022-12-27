@@ -9,6 +9,7 @@ import ModalUpdateArtikel from "./ModalUpdateArtikel";
 export default function TableArticle() {
 
     const [data, setData] = useState([]);
+    const [dataOne, setDataOne] = useState([]);
     const navigate = useNavigate();
     const api = `http://89.116.228.164:3014/`;
 
@@ -41,9 +42,9 @@ export default function TableArticle() {
 
     const getOneDataArtikel = async (id) => {
             try {
-                let res = await axios.get(api + 'artikel/getAll');
-                setData(res.data);
-                console.log(res.data);
+                let res = await axios.post(api + 'artikel/getOneArtikel', {id});
+                setDataOne(res.data);
+                console.log(res.data, 'GET ONE');
             } catch (err) {
                 console.log("err", err.response.status);
             }
@@ -53,7 +54,7 @@ export default function TableArticle() {
         <div className="overflow-x-auto relative shadow-md sm:rounded-lg mt-5">
             <div className="flex justify-start">
                 <div className="flex flex-row mb-3 xl:w-96">
-                    <ModalUpdateArtikel />
+                    <ModalUpdateArtikel data={dataOne[0]}/>
                     <input
                         type="text"
                         className="form-control block text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
@@ -139,7 +140,7 @@ export default function TableArticle() {
       rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg 
       focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#modalartikel"
+                                    data-bs-target="#modalartikelUpdate"
                                 onClick={() => getOneDataArtikel(artikel.idartikel)}
                                 >
                                     <AiFillEdit size={30}

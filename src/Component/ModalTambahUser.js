@@ -130,8 +130,6 @@ export default function ModalTambahUser() {
       </div>
     </div>
    
- 
-    
     
     <button
                 type="button"

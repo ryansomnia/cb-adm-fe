@@ -111,7 +111,7 @@ const addArticle = async(e) =>{
       ease-in-out
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-        <option selected>Pilih Kategori</option>
+        <option defaultValue='news'>Pilih Kategori</option>
         <option value="news">News</option>
         <option value="artikel">Artikel</option>
         <option value="carousel">Carousel</option>
