@@ -5,11 +5,14 @@ import { AiFillDelete, AiFillEdit, AiOutlineSearch } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import ModalTambahArtikel from "./ModaTambahArtikel";
 import ModalUpdateArtikel from "./ModalUpdateArtikel";
+import Pagination from "./Pagination";
 
 export default function TableArticle() {
 
     const [data, setData] = useState([]);
     const [dataOne, setDataOne] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(10);
     const navigate = useNavigate();
     const api = `http://89.116.228.164:3014/`;
 
@@ -41,20 +44,25 @@ export default function TableArticle() {
 
 
     const getOneDataArtikel = async (id) => {
-            try {
-                let res = await axios.post(api + 'artikel/getOneArtikel', {id});
-                setDataOne(res.data);
-                console.log(res.data, 'GET ONE');
-            } catch (err) {
-                console.log("err", err.response.status);
-            }
+        try {
+            let res = await axios.post(api + 'artikel/getOneArtikel', { id });
+            setDataOne(res.data);
+            console.log(res.data, 'GET ONE');
+        } catch (err) {
+            console.log("err", err.response.status);
+        }
     }
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPost = data.slice(indexOfFirstPost, indexOfLastPost)
 
     return (
         <div className="overflow-x-auto relative shadow-md sm:rounded-lg mt-5">
             <div className="flex justify-start">
                 <div className="flex flex-row mb-3 xl:w-96">
-                    <ModalUpdateArtikel data={dataOne[0]}/>
+                    <ModalUpdateArtikel data={dataOne[0]} />
                     <input
                         type="text"
                         className="form-control block text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
@@ -101,7 +109,7 @@ export default function TableArticle() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((artikel) =>
+                    {currentPost.map((artikel) =>
                         <tr key={artikel.idartikel} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {artikel.idartikel}
@@ -141,7 +149,7 @@ export default function TableArticle() {
       focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                                     data-bs-toggle="modal"
                                     data-bs-target="#modalartikelUpdate"
-                                onClick={() => getOneDataArtikel(artikel.idartikel)}
+                                    onClick={() => getOneDataArtikel(artikel.idartikel)}
                                 >
                                     <AiFillEdit size={30}
                                     /> Update
@@ -149,6 +157,7 @@ export default function TableArticle() {
                             </td>
                         </tr>
                     )}
+                    <Pagination postPerPage={postsPerPage} totalPost={data.length} paginate={paginate} />
                 </tbody>
             </table>
         </div>

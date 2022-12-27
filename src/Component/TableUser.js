@@ -3,11 +3,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ModalUpdateUser from "./ModalUpdateUser";
 import { AiFillDelete, AiFillEdit, AiOutlineSearch } from "react-icons/ai";
+import Pagination from "./Pagination";
 
 export default function TableUser() {
 
   const [data, setData] = useState([]);
   const [dataOne, setDataOne] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(2);
   const navigate = useNavigate();
   const api = `http://89.116.228.164:3014/`;
 
@@ -21,7 +24,6 @@ export default function TableUser() {
         console.log("err", err.response.status);
       }
     };
-
     getData();
   }, []);
 
@@ -39,24 +41,31 @@ export default function TableUser() {
 
   const getOneDataUser = async (id) => {
     try {
-      let res = await axios.post(api + 'user/getOneData',{iduser:id});
+      let res = await axios.post(api + 'user/getOneData', { iduser: id });
       setDataOne(res.data.data[0])
     } catch (err) {
       console.log("err", err.response.status);
     }
   };
-  
+
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPost = data.slice(indexOfFirstPost, indexOfLastPost)
+
 
   return (
     <>
-      <div className="overflow-x-auto relative shadow-md sm:rounded-lg mt-10">
-        <ModalUpdateUser data={dataOne}/>
+      <div className="overflow-x-auto relative shadow-md sm:rounded-lg mt-10  text-gray-700">
+        <ModalUpdateUser data={dataOne} />
         <div class="flex justify-start">
           <div class="flex flex-row mb-3 xl:w-96">
 
             <input
               type="text"
-              class="
+              className="
         form-control
         block
         
@@ -107,7 +116,7 @@ export default function TableUser() {
             </tr>
           </thead>
           <tbody>
-            {data.map((user) =>
+            {currentPost.map((user) =>
 
               <tr key={user.iduser} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -143,6 +152,7 @@ export default function TableUser() {
             )}
           </tbody>
         </table>
+        <Pagination postPerPage={postsPerPage} totalPost={data.length} paginate={paginate}/>
       </div>
     </>
   )
