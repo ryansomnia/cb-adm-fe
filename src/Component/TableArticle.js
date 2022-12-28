@@ -12,22 +12,23 @@ export default function TableArticle() {
     const [data, setData] = useState([]);
     const [dataOne, setDataOne] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [judul, setJudul] = useState('')
     const [postsPerPage] = useState(10);
     const navigate = useNavigate();
     const api = `http://89.116.228.164:3014/`;
 
 
-    useEffect(() => {
-        const getData = async (e) => {
-            try {
-                let res = await axios.get(api + 'artikel/getAll');
-                setData(res.data);
-                console.log(res.data);
-            } catch (err) {
-                console.log("err", err.response.status);
-            }
-        };
+    const getData = async (e) => {
+        try {
+            let res = await axios.get(api + 'artikel/getAll');
+            setData(res.data);
+            console.log(res.data);
+        } catch (err) {
+            console.log("err", err.response.status);
+        }
+    };
 
+    useEffect(() => {
         getData();
     }, []);
 
@@ -41,6 +42,21 @@ export default function TableArticle() {
             console.log('err', err);
         }
     }
+
+    const searchData = async () => {
+        try {
+          if (judul) {
+            console.log(judul);
+            let hasil = await axios.post(api + '/artikel/searchByJudul', { judul});
+            setData(hasil.data)
+          } else {
+            getData();
+          }
+    
+        } catch (err) {
+          console.log("err", err);
+        }
+      }
 
 
     const getOneDataArtikel = async (id) => {
@@ -64,6 +80,7 @@ export default function TableArticle() {
                 <div className="flex flex-row mb-3 xl:w-96">
                     <ModalUpdateArtikel data={dataOne[0]} />
                     <input
+                        onChange={(e) => setJudul(e.target.value)}
                         type="text"
                         className="form-control block text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -71,7 +88,7 @@ export default function TableArticle() {
                         placeholder="Cari Nama"
                     />
                     <button>
-                        <AiOutlineSearch size={30} className='px-2 bg-blue-600' color='white' />
+                        <AiOutlineSearch size={30} className='px-2 bg-blue-600' color='white' onClick={() => searchData()}/>
                     </button>
 
                 </div>

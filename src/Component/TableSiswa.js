@@ -10,22 +10,23 @@ export default function TableSiswa() {
 
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [nama, setNama] = useState('')
   const [postsPerPage] = useState(10);
   const navigate = useNavigate();
   const api = `http://89.116.228.164:3014/`;
 
+
+  const getData = async (e) => {
+    try {
+      let res = await axios.get(api + 'register/getAll');
+      setData(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log("err", err.response.status);
+    }
+  };
+
   useEffect(() => {
-
-    const getData = async (e) => {
-      try {
-        let res = await axios.get(api + 'register/getAll');
-        setData(res.data);
-        console.log(res.data);
-      } catch (err) {
-        console.log("err", err.response.status);
-      }
-    };
-
     getData();
   }, []);
 
@@ -42,6 +43,22 @@ export default function TableSiswa() {
     }
   };
 
+
+  const searchData = async () => {
+    try {
+      if (nama) {
+        console.log(nama);
+        let hasil = await axios.post(api + 'register/searchByNama', { namaLengkap: nama });
+        setData(hasil.data)
+      } else {
+        getData();
+      }
+
+    } catch (err) {
+      console.log("err", err);
+    }
+  }
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   const indexOfLastPost = currentPage * postsPerPage;
@@ -54,6 +71,7 @@ export default function TableSiswa() {
         <div class="flex flex-row mb-3 xl:w-96">
 
           <input
+            onChange={(e) => setNama(e.target.value)}
             type="text"
             class="
         form-control
@@ -74,7 +92,7 @@ export default function TableSiswa() {
             placeholder="Cari Nama"
           />
           <button>
-            <AiOutlineSearch size={30} className='px-2 bg-blue-600' color='white' />
+            <AiOutlineSearch size={30} className='px-2 bg-blue-600' color='white' onClick={() => searchData()}/>
           </button>
 
         </div>

@@ -11,19 +11,20 @@ export default function TableUser() {
   const [dataOne, setDataOne] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(2);
+  const [nama, setNama] = useState('')
   const navigate = useNavigate();
   const api = `http://89.116.228.164:3014/`;
 
+  const getData = async (e) => {
+    try {
+      let res = await axios.get(api + 'user/getAll');
+      setData(res.data.data);
+    } catch (err) {
+      console.log("err", err.response.status);
+    }
+  };
 
   useEffect(() => {
-    const getData = async (e) => {
-      try {
-        let res = await axios.get(api + 'user/getAll');
-        setData(res.data.data);
-      } catch (err) {
-        console.log("err", err.response.status);
-      }
-    };
     getData();
   }, []);
 
@@ -35,6 +36,21 @@ export default function TableUser() {
       window.location.reload();
     } catch (err) {
       console.log('err', err);
+    }
+  }
+
+  const searchData = async () => {
+    try {
+      if (nama) {
+        console.log(nama, 'nama');
+        let hasil = await axios.post(api + 'user/searchByNama', { nama });
+        setData(hasil.data)
+      } else {
+        getData();
+      }
+
+    } catch (err) {
+      console.log("err", err);
     }
   }
 
@@ -65,7 +81,9 @@ export default function TableUser() {
 
             <input
               type="text"
+              onChange={(e) => setNama(e.target.value)}
               className="
+              o
         form-control
         block
         
@@ -84,7 +102,7 @@ export default function TableUser() {
               placeholder="Cari Nama"
             />
             <button>
-              <AiOutlineSearch size={30} className='px-2 bg-blue-600' color='white' />
+              <AiOutlineSearch size={30} className='px-2 bg-blue-600' color='white' onClick={() => searchData()} />
             </button>
 
           </div>
