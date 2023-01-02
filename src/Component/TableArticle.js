@@ -47,7 +47,7 @@ export default function TableArticle() {
         try {
           if (judul) {
             console.log(judul);
-            let hasil = await axios.post(api + '/artikel/searchByJudul', { judul});
+            let hasil = await axios.post(api + 'artikel/searchByJudul', { judul});
             setData(hasil.data)
           } else {
             getData();
