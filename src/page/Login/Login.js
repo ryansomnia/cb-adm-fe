@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React,{useState} from 'react'
 import axios from "axios";
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
-  
-  const api = `http://89.116.228.164:3014/user/login`;
+// import {AiFillEye} from 'react-icons/ai'
+const Login = () => {
 
-  const [username, setUsername] =useState("");
+    const api = `http://89.116.228.164:3014/user/login`;
+
+    const [username, setUsername] =useState("");
   const [password, setPassword] =useState("");
 
   const navigate = useNavigate(); 
@@ -38,38 +39,69 @@ export default function Login() {
   }
 
   return (
-    <div className="flex justify-center">
-      {/* <div className="bg-green-400 w-1/2">
-        <h1>hh</h1>
-        </div>
-        <div className="bg-red-400 w-1/2">
-        <img src="/img/TK.JPG" alt='img'></img>
-        </div> */}
-      <div className="bg-white h-36 w-max">
-        <p className="font-sans text-3xl">Login</p>
-        <form onSubmit={saveUser}>
-          <div className="flex flex-col">
-            <label>Username</label>
-            <input
-              className=" h-8 w-max border-2 rounded "
-              id="username"
-              value={username}
-              onChange={(e)=> setUsername(e.target.value)}
-            ></input>
-            <label>Password</label>
-            <input
-              className=" h-8 w-max border-2 rounded "
-              value={password}
-              onChange={(e)=> setPassword(e.target.value)}
-              id="password"
-              type="password"
-            ></input>
-            <button type="submit" className=" mt-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-              Login
-            </button>
-          </div>
-        </form>
-      </div>
+    <div className="flex h-screen bg-white">
+    <div className="flex items-center w-1/2">
+    <img src="login.png" alt="Girl in a jacket" className='w-auto h-screen'/>
     </div>
-  );
+    <div className="flex items-center w-1/2 bg-blue-300 ">
+    <div className=' w-2/3 h-2/3 m-auto '>
+    <div className=' flex flex-col mt-20 w-auto'>
+      <h1 className=' ml-7 font-sans font-bold mb-5 text-left text-5xl text-navy'>LOGIN DISINI !</h1>
+      <p className=' ml-7 font-sans text-base text-left text-navy'> Selamat datang !<br/> silahkan isi username dan password anda</p>
+
+    </div>
+    <form onSubmit={saveUser}> 
+        <div className='mt-5'>
+    <div className='ml-7  mt-5'> 
+    <p className='text-navy font-sans mb-2 text-xl '>Username</p>
+  <input className=" h-10 w-3/4  placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-md py-2 pl-5 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" 
+  placeholder="Input Your Username ..." 
+  id='username'
+  value={username}
+  onChange={(e)=> setUsername(e.target.value)}
+  type="text" 
+  name="username"
+  />
+
+    </div>
+    <div className='ml-7  mt-5'> 
+    <p className='text-navy font-sans mb-2 text-xl '>Password</p>
+
+  <div className=' flex items-center'>
+  <input className=" h-10 w-3/4 placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-md py-2 pl-5 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" 
+  placeholder="Input Your Password ..." 
+  id='password'
+  value={password}
+  onChange={(e)=> setPassword(e.target.value)}
+  type="password"
+   name="password"/>
+  {/* <AiFillEye className='  absolute '/> */}
+  </div>
+  
+
+    </div>
+    <div className='ml-7  mt-5'> 
+
+  <div className=' flex items-center'>
+  {/* <p className='mr-1'>Lupa Password ? </p>
+  <a className='mr-5' href='#'> Klik disini</a> */}
+  <button 
+  className=" bg-green px-10 py-3 rounded-2xl text-white"
+  type='submit'>
+    Login
+    </button> 
+  </div>
+  
+
+    </div>
+    </div>
+    </form>
+   
+</div>
+
+    </div>
+  </div>
+  )
 }
+
+export default Login

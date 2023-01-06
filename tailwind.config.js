@@ -6,6 +6,18 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    colors:{
+      'green': '#028174',
+      'leave': '#OAB68B',
+      'tea': '#92DE8B',
+      'yellow': '#FFE3B3',
+      'white' : '#EDF6F3',
+      'navy' : '#14274E',
+      'black' : '#020205',
+      'green-lato': '#04757B',
+      'green-text': '#749F82'
+    }
+   
   },
   plugins: [
     require('tw-elements/dist/plugin')

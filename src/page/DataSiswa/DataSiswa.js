@@ -13,7 +13,7 @@ export default function DataSiswa() {
   return (
     <div className="flex">
       <div
-        className={`bg-green-900 h-screen p-5 pt-8 ${
+        className={`bg-green h-screen p-5 pt-8 ${
           open ? "w-72" : "w-20"
         } duration-300 relative`}
       >
