@@ -79,26 +79,26 @@ export default function TableSiswa() {
         
         text-base
         font-normal
-        text-gray-700
+        text-black
         bg-white bg-clip-padding
-        border border-solid border-gray-300
+        border border-solid border-black
         rounded
         transition
         ease-in-out
         m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+        focus:text-black focus:bg-white focus:border-navy focus:outline-none
       "
             id="exampleFormControlInput1"
             placeholder="Cari Nama"
           />
           <button>
-            <AiOutlineSearch size={30} className='px-2 bg-blue-600' color='white' onClick={() => searchData()}/>
+            <AiOutlineSearch size={30} className='px-2 bg-navy rounded-r' color='white' onClick={() => searchData()}/>
           </button>
 
         </div>
       </div>
-      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <table className=" border-collapse border bg-white mt-5 w-full text-sm text-left text-black dark:text-black">
+        <thead className="text-xs text-black uppercase dark:bg-navy dark:text-white">
           <tr>
             <th scope="col" className="py-3 px-6">
               ID Reg
@@ -129,8 +129,8 @@ export default function TableSiswa() {
         <tbody>
           {currentPost.map((register) =>
 
-            <tr key={register.idregister} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <tr key={register.idregister} className="bg-white border-b dark:bg-gray dark:border-gray hover:bg-black hover:text-white dark:hover:bg-navy">
+              <th scope="row" className="py-4 px-6 font-medium text-black hover:text-white whitespace-nowrap  dark:hover:text-white">
                 {register.idregister}
               </th>
               <td className="py-4 px-6">{register.namaLengkap}</td>
@@ -142,7 +142,7 @@ export default function TableSiswa() {
 
               <td className="py-4 px-6 text-right">
                 <button
-                  className="font-medium pr-5 text-red-600 dark:text-red-500 hover:underline"
+                  className="font-medium pr-5 text-red-600 dark:text-red hover:underline"
                   onClick={() => deleteData(register.idregister)}>
                   Delete
                 </button>
