@@ -10,7 +10,7 @@ export default function TableUser() {
   const [data, setData] = useState([]);
   const [dataOne, setDataOne] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(2);
+  const [postsPerPage, setPostsPerPage] = useState(5);
   const [nama, setNama] = useState('')
   const navigate = useNavigate();
   const api = `http://89.116.228.164:3014/`;

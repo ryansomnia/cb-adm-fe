@@ -13,7 +13,7 @@ export default function TableArticle() {
     const [dataOne, setDataOne] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [judul, setJudul] = useState('')
-    const [postsPerPage] = useState(10);
+    const [postsPerPage] = useState(5);
     const navigate = useNavigate();
     const api = `http://89.116.228.164:3014/`;
 

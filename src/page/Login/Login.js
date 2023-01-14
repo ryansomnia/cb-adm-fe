@@ -27,6 +27,7 @@ const Login = () => {
             showConfirmButton: false,
             timer: 1500
           })
+          localStorage.setItem('user', res.data.data)
           navigate("/dashboard")
         } catch (err) {
           Swal.fire({

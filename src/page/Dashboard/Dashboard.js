@@ -5,10 +5,24 @@ import { AiOutlineArrowLeft,AiOutlineUser, AiOutlineDatabase } from "react-icons
 import { MdOutlineSchool } from "react-icons/md";
 import { GrArticle } from "react-icons/gr";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 // import DataSiswa from "../DataSiswa/DataSiswa";
 
 export default function Dashboard() {
+  let navigate = useNavigate();
   const [open, setOpen] = useState(true);
+
+  const logOut =  () => {
+    localStorage.removeItem("user");
+  }
+
+  useEffect(() => {
+    
+    if (localStorage.getItem('user') == null) {
+      navigate('/login')
+    }
+  }, [])
 
   return (
     <div className="flex">
@@ -76,6 +90,19 @@ ${open && "rotate-[360deg]"}`}
               className={`text-base font-medium flex-1 ${!open && "hidden"}`}
             >
               <p className="hover:text-black">Data User</p>
+            </span>
+          </li>
+          </Link>
+          <Link to="/login">
+          <li className="text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-white hover:text-black rounded-md mt-2" onClick={logOut}>
+            <span>
+              <AiOutlineUser className="hover:bg-white" />
+            </span>
+
+            <span
+              className={`text-base font-medium flex-1 ${!open && "hidden"}`}
+            >
+              <p className="hover:text-black">Logout</p>
             </span>
           </li>
           </Link>
