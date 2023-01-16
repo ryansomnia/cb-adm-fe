@@ -3,7 +3,7 @@ import axios from "axios";
 // import Swal from "sweetalert2";
 import moment from 'moment';
 import { AiFillDelete,AiFillEdit, AiOutlineSearch } from "react-icons/ai";
-
+import ModalUpdateSiswa from "./ModalUpdateSiswa";
 import { useNavigate } from "react-router-dom";
 import Pagination from "./Pagination";
 
@@ -11,6 +11,7 @@ export default function TableSiswa() {
 
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [dataOne, setDataOne] = useState([]);
   const [nama, setNama] = useState('')
   const [postsPerPage] = useState(5);
   const navigate = useNavigate();
@@ -60,6 +61,16 @@ export default function TableSiswa() {
     }
   }
 
+  const getOneDataRegister = async (id) => {
+    try {
+      let res = await axios.post(api + 'register/getOneData', { idregister: id });
+      console.log('reeeee',res);
+      setDataOne(res.data.data[0])
+    } catch (err) {
+      console.log("err", err.response.status);
+    }
+  };
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   const indexOfLastPost = currentPage * postsPerPage;
@@ -68,6 +79,7 @@ export default function TableSiswa() {
 
   return (
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg mt-10">
+      <ModalUpdateSiswa data={dataOne} />
       <div class="flex justify-start">
         <div class="flex flex-row mb-3 xl:w-96">
 
@@ -131,17 +143,17 @@ export default function TableSiswa() {
           {currentPost.map((register) =>
 
             <tr key={register.idregister} className="bg-white border-b dark:bg-gray dark:border-gray">
-              <th scope="row" className="py-4 px-6 font-medium text-black hover:text-white whitespace-nowrap  dark:hover:text-white">
+              <th scope="row" className="py-4 px-6 bg-white font-medium text-black hover:text-white whitespace-nowrap  dark:hover:text-white">
                 {register.idregister}
               </th>
-              <td className="py-4 px-6 text-center">{register.namaLengkap}</td>
-              <td className="py-4 px-6 text-center">{register.jenisRegis}</td>
-              <td className="py-4 px-6 text-center">{moment(register.tanggalLahir).format('DD-MM-yy')}</td>
-              <td className="py-4 px-6 text-center">{register.tempatLahir}</td>
-              <td className="py-4 px-6 text-center">{register.jenisKelamin}</td>
-              <td className="py-4 px-6 text-center">{register.statusRegistrasi}</td>
+              <td className="py-4 px-6 bg-white text-center">{register.namaLengkap}</td>
+              <td className="py-4 px-6 bg-white text-center">{register.jenisRegis}</td>
+              <td className="py-4 px-6 bg-white text-center">{moment(register.tanggalLahir).format('DD-MM-yy')}</td>
+              <td className="py-4 px-6 bg-white text-center">{register.tempatLahir}</td>
+              <td className="py-4 px-6 bg-white text-center">{register.jenisKelamin}</td>
+              <td className="py-4 px-6 bg-white text-center">{register.statusRegistrasi}</td>
 
-              <td className="flex py-4 px-6 text-right">
+              <td className="flex py-4 px-6 text-right bg-white">
                 <button
                     className="flex py-1 px-2 text-center self-center bg-red text-white font-light text-xs leading-tight uppercase 
               rounded shadow-md hover:bg-red-dark hover:shadow-lg focus:bg-red-dark focus:shadow-lg 
@@ -153,9 +165,9 @@ export default function TableSiswa() {
                     type="button" className="flex py-1 px-2 text-center self-center no-underline bg-blue-dark text-white font-light text-xs leading-tight uppercase 
       rounded shadow-md hover:bg-blue hover:shadow-lg focus:bg-blue focus:shadow-lg 
       focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                    // data-bs-toggle="modal"
-                    // data-bs-target="#updateUser"
-                    // onClick={() => getOneDataUser(user.iduser)}
+                    data-bs-toggle="modal"
+                    data-bs-target="#updateRegister"
+                    onClick={() => getOneDataRegister(register.idregister)}
                   >
                     <AiFillEdit size={30}
                     /> Update
