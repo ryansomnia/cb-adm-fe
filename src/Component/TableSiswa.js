@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import Swal from "sweetalert2";
-import { AiFillDelete, AiOutlineSearch } from "react-icons/ai";
+import moment from 'moment';
+import { AiFillDelete,AiFillEdit, AiOutlineSearch } from "react-icons/ai";
 
 import { useNavigate } from "react-router-dom";
 import Pagination from "./Pagination";
@@ -129,26 +130,37 @@ export default function TableSiswa() {
         <tbody>
           {currentPost.map((register) =>
 
-            <tr key={register.idregister} className="bg-white border-b dark:bg-gray dark:border-gray hover:bg-black hover:text-white dark:hover:bg-navy">
+            <tr key={register.idregister} className="bg-white border-b dark:bg-gray dark:border-gray">
               <th scope="row" className="py-4 px-6 font-medium text-black hover:text-white whitespace-nowrap  dark:hover:text-white">
                 {register.idregister}
               </th>
-              <td className="py-4 px-6">{register.namaLengkap}</td>
-              <td className="py-4 px-6">{register.jenisRegis}</td>
-              <td className="py-4 px-6">{register.tanggalLahir}</td>
-              <td className="py-4 px-6">{register.tempatLahir}</td>
-              <td className="py-4 px-6">{register.jenisKelamin}</td>
-              <td className="py-4 px-6">{register.statusRegistrasi}</td>
+              <td className="py-4 px-6 text-center">{register.namaLengkap}</td>
+              <td className="py-4 px-6 text-center">{register.jenisRegis}</td>
+              <td className="py-4 px-6 text-center">{moment(register.tanggalLahir).format('DD-MM-yy')}</td>
+              <td className="py-4 px-6 text-center">{register.tempatLahir}</td>
+              <td className="py-4 px-6 text-center">{register.jenisKelamin}</td>
+              <td className="py-4 px-6 text-center">{register.statusRegistrasi}</td>
 
-              <td className="py-4 px-6 text-right">
+              <td className="flex py-4 px-6 text-right">
                 <button
-                  className="font-medium pr-5 text-red-600 dark:text-red hover:underline"
-                  onClick={() => deleteData(register.idregister)}>
-                  Delete
-                </button>
-                <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                  Edit
-                </button>
+                    className="flex py-1 px-2 text-center self-center bg-red text-white font-light text-xs leading-tight uppercase 
+              rounded shadow-md hover:bg-red-dark hover:shadow-lg focus:bg-red-dark focus:shadow-lg 
+              focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out mr-2"
+                    onClick={() => deleteData(register.idregister)}>
+                    <AiFillDelete size={30} /> Delete
+                  </button>
+                  <button
+                    type="button" className="flex py-1 px-2 text-center self-center no-underline bg-blue-dark text-white font-light text-xs leading-tight uppercase 
+      rounded shadow-md hover:bg-blue hover:shadow-lg focus:bg-blue focus:shadow-lg 
+      focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                    // data-bs-toggle="modal"
+                    // data-bs-target="#updateUser"
+                    // onClick={() => getOneDataUser(user.iduser)}
+                  >
+                    <AiFillEdit size={30}
+                    /> Update
+                  </button>
+
               </td>
             </tr>
           )}

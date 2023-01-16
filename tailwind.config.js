@@ -13,10 +13,15 @@ module.exports = {
       'yellow': '#FFE3B3',
       'white' : '#EDF6F3',
       'navy' : '#14274E',
+      'blue-dark':'#00337C',
+      'blue' : '#1C82AD',
       'black' : '#020205',
       'gray': '#F0F0F0',
       'green-lato': '#04757B',
-      'green-text': '#749F82'
+      'green-text': '#749F82',
+      'red': '#FD8A8A',
+      'red-dark': '#FF597B'
+      
     }
    
   },

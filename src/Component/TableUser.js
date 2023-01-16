@@ -107,8 +107,8 @@ export default function TableUser() {
 
           </div>
         </div>
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table className="w-full text-sm text-left ">
+          <thead className="text-xs text-center text-white uppercase bg-navy dark:bg-navy dark:text-white">
             <tr>
               <th scope="col" className="py-3 px-6">
                 ID
@@ -148,15 +148,15 @@ export default function TableUser() {
 
                 <td className=" flex py-4 px-6 text-right">
                   <button
-                    className="flex py-1 px-2 text-center self-center bg-red-500 text-white font-light text-xs leading-tight uppercase 
-              rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg 
+                    className="flex py-1 px-2 text-center self-center bg-red text-white font-light text-xs leading-tight uppercase 
+              rounded shadow-md hover:bg-red-dark hover:shadow-lg focus:bg-red-dark focus:shadow-lg 
               focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out mr-2"
                     onClick={() => deleteUser(user.iduser)}>
                     <AiFillDelete size={30} /> Delete
                   </button>
                   <button
-                    type="button" className="flex py-1 px-2 text-center self-center no-underline bg-blue-600 text-white font-light text-xs leading-tight uppercase 
-      rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg 
+                    type="button" className="flex py-1 px-2 text-center self-center no-underline bg-blue-dark text-white font-light text-xs leading-tight uppercase 
+      rounded shadow-md hover:bg-blue hover:shadow-lg focus:bg-blue focus:shadow-lg 
       focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                     data-bs-toggle="modal"
                     data-bs-target="#updateUser"

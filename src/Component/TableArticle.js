@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import Swal from "sweetalert2";
+import moment from 'moment';
 import { AiFillDelete, AiFillEdit, AiOutlineSearch } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import ModalTambahArtikel from "./ModaTambahArtikel";
@@ -94,7 +95,7 @@ export default function TableArticle() {
                 </div>
             </div>
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <thead className="text-xs text-white text-center uppercase bg-navy dark:bg-navy dark:text-gray-400">
                     <tr>
                         <th scope="col" className="py-3 px-6">
                             ID
@@ -105,11 +106,9 @@ export default function TableArticle() {
                         <th scope="col" className="py-2 px-4">
                             Isi Artikel
                         </th>
+                        
                         <th scope="col" className="py-3 px-6">
                             Image
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            URL
                         </th>
                         <th scope="col" className="py-3 px-6">
                             Kategori
@@ -137,9 +136,7 @@ export default function TableArticle() {
                             <td className="py-4 px-6">
                                 {artikel.isi}
                             </td>
-                            <td className="py-4 px-6">
-                                {artikel.img}
-                            </td>
+                         
                             <td className="py-4 px-6" >
                                 <img src={artikel.url} alt='img'></img>
                             </td>
@@ -147,20 +144,20 @@ export default function TableArticle() {
                                 {artikel.kategori}
                             </td>
                             <td className="py-4 px-6">
-                                {artikel.tglCreate}
+                                {moment(artikel.tglCreate).format('DD-MM-yy')}
                             </td>
                             <td className="py-4 px-6">
                                 {artikel.status}
                             </td>
                             <td className="py-4 px-6 text-right">
                                 <button
-                                    className="flex py-1 px-2 text-center self-center bg-red-500 text-white font-light text-xs leading-tight uppercase 
-              rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg 
-              focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out mr-2"
+                                    className="flex py-1 px-2 text-center self-center bg-red text-white font-light text-xs leading-tight uppercase 
+              rounded shadow-md hover:bg-red-dark hover:shadow-lg focus:bg-red-dark focus:shadow-lg 
+              focus:outline-none focus:ring-0 active:bg-red-dark active:shadow-lg transition duration-150 ease-in-out mr-2"
                                     onClick={() => deleteArtikel(artikel.idartikel)}>
                                     <AiFillDelete size={30} /> Delete
                                 </button>
-                                <button
+                                {/* <button
                                     type="button" className="flex py-1 px-2 text-center self-center no-underline bg-blue-600 text-white font-light text-xs leading-tight uppercase 
       rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg 
       focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
@@ -170,7 +167,7 @@ export default function TableArticle() {
                                 >
                                     <AiFillEdit size={30}
                                     /> Update
-                                </button>
+                                </button> */}
                             </td>
                         </tr>
                     )}
