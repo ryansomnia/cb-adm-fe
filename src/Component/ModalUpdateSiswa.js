@@ -33,11 +33,11 @@ export default function ModalUpdateSiswa({ data }) {
                 })
               }else{
                 let res =  await axios.post(api+'/register/updateData', {
-                //   id: data.iduser,
-                //   username,
-                //   password,
-                //   nama,
-                //   role
+                  id: data.iduser,
+                  username,
+                  password,
+                  nama,
+                  role
                 });
                 console.log(res);
                 Swal.fire({
