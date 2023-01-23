@@ -7,6 +7,7 @@ import TableUser from '../Component/TableUser';
 import ModalTambahUser from '../Component/ModalTambahUser';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 export default function DataUser() {
   const [open, setOpen] = useState(true);
@@ -14,9 +15,33 @@ export default function DataUser() {
   
 
   const logOut =  () => {
-    localStorage.removeItem("user");
-  }
+    Swal.fire({
+      title: 'Yakin ingin keluar ?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
 
+        Swal.fire(
+          'Logout',
+          'Kamu Berhasil Logout',
+          'success'
+        ).then(() => {
+          localStorage.removeItem("user");
+          navigate('/login')
+        }
+        )
+
+        
+      }
+    })
+    
+  }
   useEffect(() => {
     
     if (localStorage.getItem('user') == null) {
@@ -89,7 +114,6 @@ export default function DataUser() {
             </li>
             
           </Link>
-          <Link to="/login">
           <li className="text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-white hover:text-black rounded-md mt-2" onClick={logOut}>
             <span>
               <AiOutlineUser className="hover:bg-white" />
@@ -101,7 +125,6 @@ export default function DataUser() {
               <p className="hover:text-black">Logout</p>
             </span>
           </li>
-          </Link>
         </ul>
       </div>
 

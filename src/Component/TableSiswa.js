@@ -105,7 +105,7 @@ export default function TableSiswa() {
             placeholder="Cari Nama"
           />
           <button>
-            <AiOutlineSearch size={30} className='px-2 bg-navy rounded-r' color='white' onClick={() => searchData()}/>
+            <AiOutlineSearch size={30} className='px-2 bg-green-lato rounded-r' color='white' onClick={() => searchData()}/>
           </button>
 
         </div>

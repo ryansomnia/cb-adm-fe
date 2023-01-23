@@ -106,6 +106,10 @@ export default function ModalUpdateSiswa({ data }) {
                           aria-describedby="emailHelp123"
                           placeholder="Username"
                         />
+                        {key == 'tanggalLahir' ?
+                        
+                          <span className="text-xs italic text-red-dark">format: DD-MM-YYYY</span> : <></>
+                      }
                       </div>
                       )
                     })}

@@ -20,13 +20,11 @@ const Login = () => {
             username,
             password
           });
-          Swal.fire({
-            position: 'top-end',
+          Toast.fire({
             icon: 'success',
-            title: `Selamat datang <br> ${res.data.data}`,
-            showConfirmButton: false,
-            timer: 1500
+            title: `Selamat datang <br> ${res.data.data}`
           })
+          
           localStorage.setItem('user', res.data.data)
           navigate("/dashboard")
         } catch (err) {
@@ -39,6 +37,18 @@ const Login = () => {
         }
   }
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
   return (
     <div className="flex h-screen bg-white">
     <div className="flex items-center w-1/2">

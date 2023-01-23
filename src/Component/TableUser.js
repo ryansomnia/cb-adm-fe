@@ -102,7 +102,7 @@ export default function TableUser() {
               placeholder="Cari Nama"
             />
             <button>
-              <AiOutlineSearch size={30} className='px-2 bg-blue-600' color='white' onClick={() => searchData()} />
+              <AiOutlineSearch size={30} className='px-2 bg-green-lato' color='white' onClick={() => searchData()} />
             </button>
 
           </div>
