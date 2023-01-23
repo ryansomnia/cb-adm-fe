@@ -53,7 +53,7 @@ export default function Dashboard() {
   return (
     <div className="flex">
       <div
-        className={`bg-green h-screen p-5 pt-8 ${
+        className={`bg-green h-max p-5 pt-8 ${
           open ? "w-72" : "w-20"
         } duration-300 relative`}
       >

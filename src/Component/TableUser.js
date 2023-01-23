@@ -86,13 +86,13 @@ export default function TableUser() {
               o
         form-control
         block
-        
+        pl-3
         text-base
         font-normal
         text-gray-700
          bg-clip-padding
         border border-solid border-gray-300
-        rounded
+        
         transition
         ease-in-out
         m-0
@@ -102,7 +102,7 @@ export default function TableUser() {
               placeholder="Cari Nama"
             />
             <button>
-              <AiOutlineSearch size={30} className='px-2 bg-green-lato' color='white' onClick={() => searchData()} />
+              <AiOutlineSearch size={30} className='px-2 bg-green-lato rounded-r-xl' color='white' onClick={() => searchData()} />
             </button>
 
           </div>
@@ -110,9 +110,6 @@ export default function TableUser() {
         <table className="w-full text-sm text-left ">
           <thead className="text-xs text-center text-white uppercase bg-navy dark:bg-navy dark:text-white">
             <tr>
-              <th scope="col" className="py-3 px-6">
-                ID
-              </th>
               <th scope="col" className="py-3 px-6">
                 Username
               </th>
@@ -136,10 +133,8 @@ export default function TableUser() {
           <tbody>
             {currentPost.map((user) =>
 
-              <tr key={user.iduser} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  {user.iduser}
-                </th>
+              <tr key={user.iduser} className="bg-white border-b hover:bg-gray dark:hover:bg-blue hover:text-white">
+              
                 <td className="py-4 px-6">{user.username}</td>
                 <td className="py-4 px-6">{user.password}</td>
                 <td className="py-4 px-6">{user.nama}</td>

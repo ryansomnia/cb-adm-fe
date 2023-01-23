@@ -89,7 +89,7 @@ export default function TableSiswa() {
             className="
               form-control
               block
-              
+              pl-3
               text-base
               font-normal
               text-black
@@ -113,9 +113,7 @@ export default function TableSiswa() {
       <table className=" border-collapse border bg-white mt-5 w-full text-sm text-left text-black dark:text-black">
         <thead className="text-xs text-black uppercase dark:bg-navy dark:text-white">
           <tr>
-            <th scope="col" className="py-3 px-6">
-              ID Reg
-            </th>
+          
             <th scope="col" className="py-3 px-6">
               Nama Lengkap
             </th>
@@ -142,10 +140,8 @@ export default function TableSiswa() {
         <tbody>
           {currentPost.map((register) =>
 
-            <tr key={register.idregister} className="bg-white border-b dark:bg-gray dark:border-gray">
-              <th scope="row" className="py-4 px-6 bg-white font-medium text-black hover:text-white whitespace-nowrap  dark:hover:text-white">
-                {register.idregister}
-              </th>
+            <tr key={register.idregister} className="bg-white border-b dark:bg-blue dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-blue hover:bg-green ">
+                         
               <td className="py-4 px-6 bg-white text-center">{register.namaLengkap}</td>
               <td className="py-4 px-6 bg-white text-center">{register.jenisRegis}</td>
               <td className="py-4 px-6 bg-white text-center">{moment(register.tanggalLahir).format('DD-MM-yy')}</td>

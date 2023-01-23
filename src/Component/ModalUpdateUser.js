@@ -75,16 +75,16 @@ export default function ModalUpdateUser({ data }) {
       >
         <div className="modal-dialog relative w-auto pointer-events-none">
           <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-            <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+            <div className=" bg-navy modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <h5
-                className="text-xl font-medium leading-normal text-gray-800"
+                className="text-xl font-medium leading-normal text-white"
                 id="updateUserLabel"
               >
                 Edit Data
               </h5>
               <button
                 type="button"
-                className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                className="btn-close box-content w-4 h-4 p-1 text-white border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
@@ -149,7 +149,7 @@ export default function ModalUpdateUser({ data }) {
                     type="button"
                     className="px-6
         py-2.5
-        bg-purple-600
+        bg-red
         text-white
         font-medium
         text-xs
@@ -157,9 +157,9 @@ export default function ModalUpdateUser({ data }) {
         uppercase
         rounded
         shadow-md
-        hover:bg-purple-700 hover:shadow-lg
-        focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0
-        active:bg-purple-800 active:shadow-lg
+        hover:bg-red-dark hover:shadow-lg
+        focus:bg-red-dark focus:shadow-lg focus:outline-none focus:ring-0
+        active:shadow-lg
         transition
         duration-150
         ease-in-out"
@@ -171,7 +171,7 @@ export default function ModalUpdateUser({ data }) {
                     type="submit"
                     className="px-6
     py-2.5
-    bg-blue-600
+    bg-navy
     text-white
     font-medium
     text-xs
@@ -179,7 +179,7 @@ export default function ModalUpdateUser({ data }) {
     uppercase
     rounded
     shadow-md
-    hover:bg-blue-700 hover:shadow-lg
+    hover:bg-blue-dark hover:shadow-lg
     focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
     active:bg-blue-800 active:shadow-lg
     transition
