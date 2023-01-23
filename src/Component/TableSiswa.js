@@ -24,7 +24,7 @@ export default function TableSiswa() {
       setData(res.data);
       console.log(res.data);
     } catch (err) {
-      console.log("err", err.response.status);
+      console.log("err", err);
     }
   };
 
@@ -64,10 +64,10 @@ export default function TableSiswa() {
   const getOneDataRegister = async (id) => {
     try {
       let res = await axios.post(api + 'register/getOneData', { idregister: id });
-      console.log('reeeee',res);
-      setDataOne(res.data.data[0])
+      console.log('reeeee',res.data);
+      setDataOne(res.data)
     } catch (err) {
-      console.log("err", err.response.status);
+      console.log("err", err);
     }
   };
 
@@ -80,26 +80,26 @@ export default function TableSiswa() {
   return (
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg mt-10">
       <ModalUpdateSiswa data={dataOne} />
-      <div class="flex justify-start">
-        <div class="flex flex-row mb-3 xl:w-96">
+      <div className="flex justify-start">
+        <div className="flex flex-row mb-3 xl:w-96">
 
           <input
             onChange={(e) => setNama(e.target.value)}
             type="text"
-            class="
-        form-control
-        block
-        
-        text-base
-        font-normal
-        text-black
-        bg-white bg-clip-padding
-        border border-solid border-black
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-black focus:bg-white focus:border-navy focus:outline-none
+            className="
+              form-control
+              block
+              
+              text-base
+              font-normal
+              text-black
+              bg-white bg-clip-padding
+              border border-solid border-black
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-black focus:bg-white focus:border-navy focus:outline-none
       "
             id="exampleFormControlInput1"
             placeholder="Cari Nama"
@@ -166,7 +166,7 @@ export default function TableSiswa() {
       rounded shadow-md hover:bg-blue hover:shadow-lg focus:bg-blue focus:shadow-lg 
       focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                     data-bs-toggle="modal"
-                    data-bs-target="#updateRegister"
+                    data-bs-target="#modalsiswa"
                     onClick={() => getOneDataRegister(register.idregister)}
                   >
                     <AiFillEdit size={30}
