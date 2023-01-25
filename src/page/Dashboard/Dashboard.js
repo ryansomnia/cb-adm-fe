@@ -53,7 +53,7 @@ export default function Dashboard() {
   return (
     <div className="flex">
       <div
-        className={`bg-green h-max p-5 pt-8 ${
+        className={`bg-green h-screen p-5 pt-8 ${
           open ? "w-72" : "w-20"
         } duration-300 relative`}
       >
@@ -81,7 +81,6 @@ ${open && "rotate-[360deg]"}`}
         <ul className="pt-2">
         <Link to="/datasiswa">
           <li className="text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-white hover:text-black rounded-md mt-2">
-          
            <span className="hover:text-black">
               <MdOutlineSchool className="hover:bg-white" />
             </span>
@@ -133,8 +132,15 @@ ${open && "rotate-[360deg]"}`}
         </ul>
       </div>
 
-      <div className="p-7">
+      <div className="p-7 w-max">
         <h1 className="text-2xl font-semibold">Home Page</h1>
+        {/* CARD Item */}
+        {/* <div className="bg-green mt-10 px-10 py-3 rounded-md">
+         <h1 className=" text-xl text-white">Jumlah Siswa</h1>
+         <h3 className=" text-6xl text-white text-center"> 900 </h3>
+         <h3 className=" text-center text-white">Siswa</h3> 
+
+        </div>*/}
       </div>
     </div>
   );
