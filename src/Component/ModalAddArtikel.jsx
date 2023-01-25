@@ -3,18 +3,18 @@ import axios from "axios";
 // import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 import { AiFillFileAdd } from "react-icons/ai";
+import Loading from "./Loading";
 
 
-export default function ModalAddArtikel({data}) {
+export default function ModalAddArtikel({ data }) {
   const api = `http://89.116.228.164:3014/artikel/getOneArtikel`;
   const [judul, setJudul] = useState("");
   const [isi, setIsi] = useState("");
   const [file, setFile] = useState("");
+  const [show, setShow] = useState(false);
   const [kategori, setKategori] = useState("");
 
   const navigate = useNavigate();
-
-
 
   const addArticle = async (e) => {
     e.preventDefault();
@@ -27,33 +27,34 @@ export default function ModalAddArtikel({data}) {
 
     try {
       // loading start
-      await axios.post(api, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
+      setShow(false)
+      // await axios.post(api, formData, {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });
+      // Loading(false)
       // loading end
-      navigate("/dataartikel")
+      
+      navigate("/dataartikel");
       window.location.reload();
-
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
-    console.log(data, 'datas');
-    setJudul(data?.judul)
-    setIsi(data?.isi)
-    setFile(data?.file)
-    setKategori(data?.kategori)
-  }, [data])
-
+    console.log(data, "datas");
+    setJudul(data?.judul);
+    setIsi(data?.isi);
+    setFile(data?.file);
+    setKategori(data?.kategori);
+  }, [data]);
 
   return (
     // Button trigger modal
     <div className="flex flex-row">
-      {/* <!-- Modal --> */}
+       <Loading/>
       <div
         className=" modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
         id="modalartikelUpdate"
@@ -82,12 +83,15 @@ export default function ModalAddArtikel({data}) {
                 <form>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="form-group mb-6">
-                      <input type="text"
+                      <input
+                        type="text"
                         value={judul}
                         onChange={(e) => setJudul(e.target.value)}
                         className="form-control block  w-full  px-3  py-1.5  text-base  font-normal  text-gray-700  bg-white bg-clip-padding  border border-solid border-gray-300 rounded transition ease-in-out m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        aria-describedby="emailHelp123" placeholder="Judul Artikels" />
+                        aria-describedby="emailHelp123"
+                        placeholder="Judul Artikels"
+                      />
                     </div>
                     <div className="form-group mb-6">
                       <select
@@ -107,8 +111,10 @@ export default function ModalAddArtikel({data}) {
       transition
       ease-in-out
       m-0
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                        <option defaultValue='news'>Pilih Kategori</option>
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        aria-label="Default select example"
+                      >
+                        <option defaultValue="news">Pilih Kategori</option>
                         <option value="news">News</option>
                         <option value="artikel">Artikel</option>
                         <option value="carousel">Carousel</option>
@@ -142,7 +148,12 @@ export default function ModalAddArtikel({data}) {
                     ></textarea>
                   </div>
                   <div className="form-group mb-6">
-                    <label for="formFile" className="form-label inline-block mb-2 text-gray-700">Input Gambar</label>
+                    <label
+                      for="formFile"
+                      className="form-label inline-block mb-2 text-gray-700"
+                    >
+                      Input Gambar
+                    </label>
                     <input
                       //  value={file.name ? file.name : ''}
                       onChange={(e) => setFile(e.target.files[0])}
@@ -162,10 +173,11 @@ export default function ModalAddArtikel({data}) {
     m-0
     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                       type="file"
-                      accept="image/png, image/jpg, image/jpeg" id="formFile" />
+                      accept="image/png, image/jpg, image/jpeg"
+                      id="formFile"
+                    />
                   </div>
-                  <div className="form-group form-check text-center mb-6">
-                  </div>
+                  <div className="form-group form-check text-center mb-6"></div>
                   <button
                     type="button"
                     className="px-6
@@ -189,6 +201,7 @@ export default function ModalAddArtikel({data}) {
                     Close
                   </button>
                   <button
+                  data-modal-target="small-modal" data-modal-toggle="small-modal"
                     onClick={addArticle}
                     type="submit"
                     className="px-6
@@ -209,15 +222,12 @@ export default function ModalAddArtikel({data}) {
       ease-in-out
       ml-1"
                   >
-                    Save changes
+                    Save changes Ok
                   </button>
-
                 </form>
               </div>
             </div>
-            <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-
-            </div>
+            <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md"></div>
           </div>
         </div>
       </div>

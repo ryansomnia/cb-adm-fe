@@ -3,6 +3,7 @@ import axios from "axios";
 // import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 import { AiFillFileAdd } from "react-icons/ai";
+import Loading from "./Loading";
 
 
 export default function ModalTambahArtikel() {
@@ -11,6 +12,7 @@ export default function ModalTambahArtikel() {
   const [isi, setIsi] =useState("");
   const [file, setFile] =useState("");
   const [kategori, setKategori] =useState("");
+  const [show, setShow] =useState(false);
 
   const navigate = useNavigate(); 
 
@@ -31,11 +33,10 @@ const addArticle = async(e) =>{
         headers:{
           'Content-Type': 'multipart/form-data'
         }
-      })
-// loading end
+      }).then(() => setShow(false))
+      
       navigate("/dataartikel")
       window.location.reload();
-
     } catch (err) {
       console.log(err );
     }
@@ -47,6 +48,7 @@ const addArticle = async(e) =>{
   return (
     // Button trigger modal
     <div className="flex flex-row">
+      <Loading show={false}/>
       <button
         type="button" className="px-6 py-2.5 bg-blue text-white font-medium text-xs leading-tight uppercase 
         rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg 
@@ -192,6 +194,8 @@ const addArticle = async(e) =>{
                 Close
               </button>
               <button 
+              data-bs-toggle="modal"
+              data-bs-target="#modalLoading"
               onClick={addArticle}
                 type="submit"
                 className="px-6
@@ -212,14 +216,11 @@ const addArticle = async(e) =>{
       ease-in-out
       ml-1"
              >
-                Save changes
+                Save changes Ok
               </button>
              
   </form>
 </div>
-            </div>
-            <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-          
             </div>
           </div>
         </div>

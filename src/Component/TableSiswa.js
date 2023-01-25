@@ -130,7 +130,7 @@ export default function TableSiswa() {
               Jenis Kelamin
             </th>
             <th scope="col" className="py-3 px-6">
-              Status Registrasi
+              Nomor Handphone
             </th>
             <th scope="col" className="py-3 px-6 text-center">
               Action
@@ -147,7 +147,7 @@ export default function TableSiswa() {
               <td className="py-4 px-6 bg-white text-center">{moment(register.tanggalLahir).format('DD-MM-yy')}</td>
               <td className="py-4 px-6 bg-white text-center">{register.tempatLahir}</td>
               <td className="py-4 px-6 bg-white text-center">{register.jenisKelamin}</td>
-              <td className="py-4 px-6 bg-white text-center">{register.statusRegistrasi}</td>
+              <td className="py-4 px-6 bg-white text-center">{register.noHandphone}</td>
 
               <td className="flex py-4 px-6 text-right bg-white">
                 <button
