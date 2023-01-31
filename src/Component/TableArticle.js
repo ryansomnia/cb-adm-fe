@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 // import ModalTambahArtikel from "./ModaTambahArtikel";
 import ModalAddArtikel from "./ModalAddArtikel";
 import Pagination from "./Pagination";
+import Swal from "sweetalert2";
 
 export default function TableArticle() {
 
@@ -31,14 +32,40 @@ export default function TableArticle() {
 
     useEffect(() => {
         getData();
-    }, []);
+    });
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Ingin menghapus Artikel ?',
+            showCancelButton: true,
+            confirmButtonText: 'Hapus'
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                deleteArtikel(id)
+            }
+        })
+    }
 
     const deleteArtikel = async (id) => {
         try {
-            await axios.post(api + 'artikel/deleteArtikel', { id });
-
-            navigate("/dataartikel")
-            window.location.reload();
+            let res = await axios.post(api + 'artikel/deleteArtikel', { id });
+            if (res.data.code == 200) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sukses menghapus data!',
+                    text: res.data.message
+                }).then(() => {
+                    navigate("/dataartikel")
+                    window.location.reload();
+                })
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: res.data.message
+                })
+            }
         } catch (err) {
             console.log('err', err);
         }
@@ -46,18 +73,18 @@ export default function TableArticle() {
 
     const searchData = async () => {
         try {
-          if (judul) {
-            console.log(judul);
-            let hasil = await axios.post(api + 'artikel/searchByJudul', { judul});
-            setData(hasil.data)
-          } else {
-            getData();
-          }
-    
+            if (judul) {
+                console.log(judul);
+                let hasil = await axios.post(api + 'artikel/searchByJudul', { judul });
+                setData(hasil.data)
+            } else {
+                getData();
+            }
+
         } catch (err) {
-          console.log("err", err);
+            console.log("err", err);
         }
-      }
+    }
 
 
     const getOneDataArtikel = async (id) => {
@@ -89,7 +116,7 @@ export default function TableArticle() {
                         placeholder="Cari Judul"
                     />
                     <button>
-                        <AiOutlineSearch size={30} className=' bg-green px-2 rounded-r-xl ' color='white' onClick={() => searchData()}/>
+                        <AiOutlineSearch size={30} className=' bg-green px-2 rounded-r-xl ' color='white' onClick={() => searchData()} />
                     </button>
 
                 </div>
@@ -97,14 +124,14 @@ export default function TableArticle() {
             <table className="w-full text-sm text-left text-black dark:text-black">
                 <thead className="text-xs text-white text-center uppercase bg-navy dark:bg-navy dark:text-white">
                     <tr>
-                       
+
                         <th scope="col" className="py-3 px-6">
                             Judul
                         </th>
                         <th scope="col" className="py-2 px-4">
                             Isi Artikel
                         </th>
-                        
+
                         <th scope="col" className="py-3 px-6">
                             Image
                         </th>
@@ -114,7 +141,7 @@ export default function TableArticle() {
                         <th scope="col" className="py-3 px-10">
                             Tanggal Dibuat
                         </th>
-                      
+
                         <th scope="col" className="py-3 px-6">
                             Action
                         </th>
@@ -123,14 +150,14 @@ export default function TableArticle() {
                 <tbody>
                     {currentPost.map((artikel) =>
                         <tr key={artikel.idartikel} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-blue dark:hover:text-white">
-                         
+
                             <td className="py-4 px-6">
                                 {artikel.judul}
                             </td>
                             <td className="py-4 px-6">
                                 {artikel.isi}
                             </td>
-                         
+
                             <td className="py-4 px-6" >
                                 <img src={artikel.url} alt='img'></img>
                             </td>
@@ -140,13 +167,13 @@ export default function TableArticle() {
                             <td className="py-4 px-6">
                                 {moment(artikel.tglCreate).format('DD-MM-yy')}
                             </td>
-                            
+
                             <td className="py-4 px-6 text-right">
                                 <button
                                     className="flex py-1 px-2 text-center self-center bg-red text-white font-light text-xs leading-tight uppercase 
               rounded shadow-md hover:bg-red-dark hover:shadow-lg focus:bg-red-dark focus:shadow-lg 
               focus:outline-none focus:ring-0 active:bg-red-dark active:shadow-lg transition duration-150 ease-in-out mr-2"
-                                    onClick={() => deleteArtikel(artikel.idartikel)}>
+                                    onClick={() => handleDelete(artikel.idartikel)}>
                                     <AiFillDelete size={30} /> Delete
                                 </button>
                                 {/* <button

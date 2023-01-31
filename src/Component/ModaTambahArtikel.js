@@ -1,23 +1,23 @@
 import React, { useState } from "react";
-import $ from "jquery";
 import axios from "axios";
 // import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 import { AiFillFileAdd } from "react-icons/ai";
 import Loading from "./Loading";
+import Swal from "sweetalert2";
 
 
 export default function ModalTambahArtikel() {
   const api = `http://89.116.228.164:3014/artikel/addArtikel`;
-  const [judul, setJudul] =useState("");
-  const [isi, setIsi] =useState("");
-  const [file, setFile] =useState("");
-  const [kategori, setKategori] =useState("");
-  const [showLoading, setShowLoading] =useState(false);
+  const [judul, setJudul] = useState("");
+  const [isi, setIsi] = useState("");
+  const [file, setFile] = useState("");
+  const [kategori, setKategori] = useState("");
+  const [showLoading, setShowLoading] = useState(false);
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-const addArticle = async(e) =>{
+  const addArticle = async (e) => {
     e.preventDefault();
     console.log(file);
     let formData = new FormData();
@@ -29,36 +29,67 @@ const addArticle = async(e) =>{
     try {
       // loading start
       setShowLoading(true)
-      await axios.post(api,formData,{
-        headers:{
+      let res = await axios.post(api, formData, {
+        headers: {
           'Content-Type': 'multipart/form-data'
         }
-      }).then(() => setShowLoading(false))
-      
-      navigate("/dataartikel")
-      window.location.reload();
+      })
+
+      console.log(res.data.code, 'kokok');
+
+      if (res.data.code === 200) {
+
+        console.log('suksesss');
+
+        setShowLoading(false)
+        Swal.fire({
+          icon: 'success',
+          title: 'Sukses upload artikel',
+          text: res.data.message
+        }).then(() => {
+          navigate("/dataartikel")
+          window.location.reload();
+        })
+
+      } else {
+        setShowLoading(false)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: res.data.message
+        })
+      }
+
+      console.log('3');
     } catch (err) {
-      console.log(err );
+      console.log('1');
+      console.log(err);
+      setShowLoading(false)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.response.data.message
+      })
     }
 
 
-}
+  }
 
-  
+
   return (
     // Button trigger modal
     <div className="flex flex-row">
       {
         showLoading === true ? <Loading /> : <></>
       }
-      
+
       <button
         type="button" className="px-6 py-2.5 bg-blue text-white font-medium text-xs leading-tight uppercase 
         rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg 
         focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
         data-bs-toggle="modal"
         data-bs-target="#modalartikel">
-       <AiFillFileAdd size={30} className="mb-5"/> Tambah Artikel
+        <AiFillFileAdd size={30} className="mb-5" /> Tambah Artikel
       </button>
 
       {/* <!-- Modal --> */}
@@ -86,22 +117,22 @@ const addArticle = async(e) =>{
               ></button>
             </div>
             <div className="modal-body relative p-4">
-            <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
-  <form>
-    <div className="grid grid-cols-2 gap-4">
-      <div className="form-group mb-6">
-        <input type="text" 
-        value={judul}
-        onChange={(e)=> setJudul(e.target.value)}
-        className="form-control block  w-full  px-3  py-1.5  text-base  font-normal  text-gray-700  bg-white bg-clip-padding  border border-solid border-gray-300 rounded transition ease-in-out m-0
+              <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+                <form>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="form-group mb-6">
+                      <input type="text"
+                        value={judul}
+                        onChange={(e) => setJudul(e.target.value)}
+                        className="form-control block  w-full  px-3  py-1.5  text-base  font-normal  text-gray-700  bg-white bg-clip-padding  border border-solid border-gray-300 rounded transition ease-in-out m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-          aria-describedby="emailHelp123" placeholder="Judul Artikel"/>
-      </div>
-      <div className="form-group mb-6">
-      <select 
-         value={kategori}
-         onChange={(e)=> setKategori(e.target.value)}
-      className="form-select appearance-none
+                        aria-describedby="emailHelp123" placeholder="Judul Artikel" />
+                    </div>
+                    <div className="form-group mb-6">
+                      <select
+                        value={kategori}
+                        onChange={(e) => setKategori(e.target.value)}
+                        className="form-select appearance-none
       block
       w-full
       px-3
@@ -116,18 +147,18 @@ const addArticle = async(e) =>{
       ease-in-out
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-        <option defaultValue='news'>Pilih Kategori</option>
-        <option value="news">News</option>
-        <option value="artikel">Artikel</option>
-        <option value="carousel">Carousel</option>
-    </select>
-      </div>
-    </div>
-    <div className="form-group mb-6">
-    <textarea
-       value={isi}
-       onChange={(e)=> setIsi(e.target.value)}
-      className="
+                        <option defaultValue='news'>Pilih Kategori</option>
+                        <option value="news">News</option>
+                        <option value="artikel">Artikel</option>
+                        <option value="carousel">Carousel</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="form-group mb-6">
+                    <textarea
+                      value={isi}
+                      onChange={(e) => setIsi(e.target.value)}
+                      className="
         form-control
         block
         w-full
@@ -144,17 +175,17 @@ const addArticle = async(e) =>{
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
       "
-      id="exampleFormControlTextarea1"
-      rows="3"
-      placeholder="Isi Artikel"
-    ></textarea>
-    </div>
-    <div className="form-group mb-6">
-    <label for="formFile" className="form-label inline-block mb-2 text-gray-700">Input Gambar</label>
-    <input 
-      //  value={file.name ? file.name : ''}
-       onChange={(e)=> setFile(e.target.files[0])}
-    className="form-control
+                      id="exampleFormControlTextarea1"
+                      rows="3"
+                      placeholder="Isi Artikel"
+                    ></textarea>
+                  </div>
+                  <div className="form-group mb-6">
+                    <label for="formFile" className="form-label inline-block mb-2 text-gray-700">Input Gambar</label>
+                    <input
+                      //  value={file.name ? file.name : ''}
+                      onChange={(e) => setFile(e.target.files[0])}
+                      className="form-control
     block
     w-full
     px-3
@@ -168,15 +199,15 @@ const addArticle = async(e) =>{
     transition
     ease-in-out
     m-0
-    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-    type="file" 
-    accept="image/png, image/jpg, image/jpeg" id="formFile"/>
-    </div>
-    <div className="form-group form-check text-center mb-6">
-     </div>
-    <button
-                type="button"
-                className="px-6
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                      type="file"
+                      accept="image/png, image/jpg, image/jpeg" id="formFile" />
+                  </div>
+                  <div className="form-group form-check text-center mb-6">
+                  </div>
+                  <button
+                    type="button"
+                    className="px-6
           py-2.5
           bg-red
           text-white
@@ -192,16 +223,16 @@ const addArticle = async(e) =>{
           transition
           duration-150
           ease-in-out"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button 
-              data-bs-toggle="modal"
-              data-bs-target="#modalLoading"
-              onClick={addArticle}
-                type="submit"
-                className="px-6
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalLoading"
+                    onClick={addArticle}
+                    type="submit"
+                    className="px-6
       py-2.5
       bg-blue
       text-white
@@ -218,12 +249,12 @@ const addArticle = async(e) =>{
       duration-150
       ease-in-out
       ml-1"
-             >
-                Save changes
-              </button>
-             
-  </form>
-</div>
+                  >
+                    Save changes
+                  </button>
+
+                </form>
+              </div>
             </div>
           </div>
         </div>
