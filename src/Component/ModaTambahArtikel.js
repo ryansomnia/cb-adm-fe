@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import $ from "jquery";
 import axios from "axios";
 // import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
@@ -12,16 +13,14 @@ export default function ModalTambahArtikel() {
   const [isi, setIsi] =useState("");
   const [file, setFile] =useState("");
   const [kategori, setKategori] =useState("");
-  const [show, setShow] =useState(false);
+  const [showLoading, setShowLoading] =useState(false);
 
   const navigate = useNavigate(); 
-
-
 
 const addArticle = async(e) =>{
     e.preventDefault();
     console.log(file);
-        let formData = new FormData();
+    let formData = new FormData();
     formData.append("judul", judul);
     formData.append("isi", isi);
     formData.append("file", file);
@@ -29,11 +28,12 @@ const addArticle = async(e) =>{
 
     try {
       // loading start
+      setShowLoading(true)
       await axios.post(api,formData,{
         headers:{
           'Content-Type': 'multipart/form-data'
         }
-      }).then(() => setShow(false))
+      }).then(() => setShowLoading(false))
       
       navigate("/dataartikel")
       window.location.reload();
@@ -48,7 +48,10 @@ const addArticle = async(e) =>{
   return (
     // Button trigger modal
     <div className="flex flex-row">
-      <Loading show={false}/>
+      {
+        showLoading === true ? <Loading /> : <></>
+      }
+      
       <button
         type="button" className="px-6 py-2.5 bg-blue text-white font-medium text-xs leading-tight uppercase 
         rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg 
@@ -216,7 +219,7 @@ const addArticle = async(e) =>{
       ease-in-out
       ml-1"
              >
-                Save changes Ok
+                Save changes
               </button>
              
   </form>

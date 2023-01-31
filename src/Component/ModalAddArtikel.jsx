@@ -11,7 +11,7 @@ export default function ModalAddArtikel({ data }) {
   const [judul, setJudul] = useState("");
   const [isi, setIsi] = useState("");
   const [file, setFile] = useState("");
-  const [show, setShow] = useState(false);
+  const [showLoading, setShowLoading] =useState(false);
   const [kategori, setKategori] = useState("");
 
   const navigate = useNavigate();
@@ -27,14 +27,15 @@ export default function ModalAddArtikel({ data }) {
 
     try {
       // loading start
-      setShow(false)
-      // await axios.post(api, formData, {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      // });
-      // Loading(false)
-      // loading end
+      setShowLoading(true)
+      await axios.post(api,formData,{
+        headers:{
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(() => setShowLoading(false))
+      
+      navigate("/dataartikel")
+      window.location.reload();
       
       navigate("/dataartikel");
       window.location.reload();
@@ -54,7 +55,10 @@ export default function ModalAddArtikel({ data }) {
   return (
     // Button trigger modal
     <div className="flex flex-row">
-       <Loading/>
+      {
+        showLoading === true ? <Loading /> : <></>
+      }
+      
       <div
         className=" modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
         id="modalartikelUpdate"
@@ -222,7 +226,7 @@ export default function ModalAddArtikel({ data }) {
       ease-in-out
       ml-1"
                   >
-                    Save changes Ok
+                    Save changes
                   </button>
                 </form>
               </div>
