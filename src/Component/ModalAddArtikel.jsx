@@ -7,7 +7,7 @@ import Loading from "./Loading";
 
 
 export default function ModalAddArtikel({ data }) {
-  const api = `http://89.116.228.164:3014/artikel/getOneArtikel`;
+  const api = `http://31.220.6.60:3014/artikel/getOneArtikel`;
   const [judul, setJudul] = useState("");
   const [isi, setIsi] = useState("");
   const [file, setFile] = useState("");

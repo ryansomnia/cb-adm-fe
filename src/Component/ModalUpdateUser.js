@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 
 export default function ModalUpdateUser({ data }) {
-  const api = `http://89.116.228.164:3014`;
+  const api = `http://31.220.6.60:3014`;
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

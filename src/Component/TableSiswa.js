@@ -15,7 +15,7 @@ export default function TableSiswa() {
   const [nama, setNama] = useState('')
   const [postsPerPage] = useState(5);
   const navigate = useNavigate();
-  const api = `http://89.116.228.164:3014/`;
+  const api = `http://31.220.6.60:3014/`;
 
 
   const getData = async (e) => {

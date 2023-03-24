@@ -13,7 +13,7 @@ export default function TableUser() {
   const [postsPerPage, setPostsPerPage] = useState(5);
   const [nama, setNama] = useState('')
   const navigate = useNavigate();
-  const api = `http://89.116.228.164:3014/`;
+  const api = `http://31.220.6.60:3014/`;
 
   const getData = async (e) => {
     try {

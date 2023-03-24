@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 // import {AiFillEye} from 'react-icons/ai'
 const Login = () => {
 
-    const api = `http://89.116.228.164:3014/user/login`;
+    const api = `http://31.220.6.60:3014/user/login`;
 
     const [username, setUsername] =useState("");
   const [password, setPassword] =useState("");

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AiFillEdit } from "react-icons/ai";
 import Swal from "sweetalert2";
 export default function ModalUpdateSiswa({ data }) {
-  const api = `http://89.116.228.164:3014`;
+  const api = `http://31.220.6.60:3014`;
 
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ export default function ModalUpdateSiswa({ data }) {
   const updateSiswa = async (e) => {
     e.preventDefault();
     try {
-      axios.post('http://89.116.228.164:3014/register/updateData', dataSiswa)
+      axios.post('http://31.220.6.60:3014/register/updateData', dataSiswa)
         .then(function (response) {
           console.log(response);
           HandleMassage("Sukses mengedit data.");
