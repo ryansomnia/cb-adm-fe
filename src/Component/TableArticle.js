@@ -32,7 +32,7 @@ export default function TableArticle() {
 
     useEffect(() => {
         getData();
-    });
+    }, []);
 
     const handleDelete = (id) => {
         Swal.fire({
