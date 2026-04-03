@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { AiFillFileAdd } from "react-icons/ai";
 export default function ModalTambahUser() {
 
-  const api = `http://31.220.6.60:3014/user/addUser`;
+  const api = `https://api.sekolahcerdasbangsa.sch.id/user/addUser`;
 
   const [username, setUsername] =useState("");
   const [password, setPassword] =useState("");

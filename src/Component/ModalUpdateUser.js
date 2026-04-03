@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 
 export default function ModalUpdateUser({ data }) {
-  const api = `http://31.220.6.60:3014`;
+  const api = `https://api.sekolahcerdasbangsa.sch.id`;
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

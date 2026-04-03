@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 // import {AiFillEye} from 'react-icons/ai'
 const Login = () => {
 
-    const api = `http://31.220.6.60:3014/user/login`;
+    const api = `https://api.sekolahcerdasbangsa.sch.id/user/login`;
 
     const [username, setUsername] =useState("");
   const [password, setPassword] =useState("");

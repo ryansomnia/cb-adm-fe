@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 
 export default function ModalTambahArtikel() {
-  const api = `http://31.220.6.60:3014/artikel/addArtikel`;
+  const api = `https://api.sekolahcerdasbangsa.sch.id/artikel/addArtikel`;
   const [judul, setJudul] = useState("");
   const [isi, setIsi] = useState("");
   const [file, setFile] = useState("");
